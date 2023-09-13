@@ -111,6 +111,12 @@ namespace SpicyInvaders
                 if(x is Rectangle && (string)x.Tag == "enemy")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed);
+
+                    if(Canvas.GetLeft(x) > Width)
+                    {
+                        Canvas.SetLeft(x, -80);
+                        Canvas.SetTop(x, Canvas.GetTop(x) + (x.Height + 10));
+                    }
                 }
             }
         }
