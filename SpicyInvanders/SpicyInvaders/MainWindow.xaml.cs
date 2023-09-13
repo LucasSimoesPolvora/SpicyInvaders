@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,12 +48,14 @@ namespace SpicyInvaders
             gameTimer.Interval = TimeSpan.FromMilliseconds(30);
             gameTimer.Start();
 
-            playerSkin.ImageSource = new BitmapImage(new Uri("D:/SpicyInvanders/SpicyInvaders/Images/player.png"));
-            Player.Fill = playerSkin;
+            //string[] filePaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "player.png", SearchOption.AllDirectories);
+
+            
+                playerSkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/player.png"));
+                Player.Fill = playerSkin;
+            
 
             myCanvas.Focus();
-
-
         }
         private void GameLoop(object sender, EventArgs e)
         {
@@ -74,6 +77,15 @@ namespace SpicyInvaders
             else if (goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
             {
                 Canvas.SetTop(Player, Canvas.GetTop(Player) + 10);
+            }
+
+            BulletTimer -= 3;
+
+            if(BulletTimer < 0)
+            {
+                EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10) ;
+
+                BulletTimer = BulletTimerLimit;
             }
         }
 
@@ -131,12 +143,33 @@ namespace SpicyInvaders
                     Stroke = Brushes.Red
                 };
 
+                Canvas.SetTop(newBullet, Canvas.GetTop(Player) - newBullet.Height);
+                Canvas.SetLeft(newBullet,Canvas.GetLeft(Player) + Player.Width / 2);
+
+                myCanvas.Children.Add(newBullet);
             }
-            
+
         }
 
-        private void EnnemyBullet(double x, double y)
+        private void EnnemyBulletMaker(double x, double y)
         {
+            Rectangle enemyBullet = new Rectangle
+            {
+                Tag = "enemyBulet",
+                Height = 40,
+                Width = 15,
+                Fill = Brushes.Yellow,
+                Stroke = Brushes.Black,
+                StrokeThickness = 5,
+            };
+
+            Canvas.SetTop(enemyBullet, y);
+            Canvas.SetLeft(enemyBullet, x);
+
+            myCanvas.Children.Add(enemyBullet);
+
+
+
 
         }
 

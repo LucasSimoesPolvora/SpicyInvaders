@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\SpicyInvanders\\SpicyInvaders\\SpicyInvaders.csproj",
+      "projectUniqueName": "C:\\Users\\pd57mgs\\Documents\\GitHub\\SpicyInvaders\\SpicyInvanders\\SpicyInvaders\\SpicyInvaders.csproj",
       "projectName": "SpicyInvaders",
-      "projectPath": "D:\\SpicyInvanders\\SpicyInvaders\\SpicyInvaders.csproj",
+      "projectPath": "C:\\Users\\pd57mgs\\Documents\\GitHub\\SpicyInvaders\\SpicyInvanders\\SpicyInvaders\\SpicyInvaders.csproj",
       "packagesPath": "C:\\Users\\pd57mgs\\.nuget\\packages\\",
-      "outputPath": "D:\\SpicyInvanders\\SpicyInvaders\\obj\\",
+      "outputPath": "C:\\Users\\pd57mgs\\Documents\\GitHub\\SpicyInvaders\\SpicyInvanders\\SpicyInvaders\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
