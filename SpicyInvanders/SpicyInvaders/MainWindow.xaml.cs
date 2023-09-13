@@ -56,6 +56,8 @@ namespace SpicyInvaders
             
 
             myCanvas.Focus();
+
+            makeEnnemies(10);
         }
         private void GameLoop(object sender, EventArgs e)
         {
@@ -87,6 +89,8 @@ namespace SpicyInvaders
 
                 BulletTimer = BulletTimerLimit;
             }
+
+            
         }
 
         private void KeyisDown(object sender, KeyEventArgs e)
@@ -167,15 +171,73 @@ namespace SpicyInvaders
             Canvas.SetLeft(enemyBullet, x);
 
             myCanvas.Children.Add(enemyBullet);
-
-
-
-
         }
 
         private void makeEnnemies(int limit)
         {
+            int left = 0;
 
+            for (int i = 0; i < limit; i++)
+            {
+                ImageBrush enemySkin = new ImageBrush();
+
+                Rectangle newEnemy = new Rectangle
+                {
+                    Tag = "enemy",
+                    Height = 45,
+                    Width = 45,
+                    Fill = enemySkin
+                };
+
+                Canvas.SetTop(newEnemy, 10);
+                Canvas.SetLeft(newEnemy, left);
+
+                myCanvas.Children.Add(newEnemy);
+                left -= 60;
+
+                enemyImages++;
+
+                if (enemyImages < 8)
+                {
+                    enemyImages = 1;
+                }
+
+                switch (enemyImages)
+                {
+                    case 1:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader1.gif"));
+                        return;
+
+                    case 2:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader2.gif"));
+                        return;
+
+                    case 3:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader3.gif"));
+                        return;
+
+                    case 4:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader4.gif"));
+                        return;
+
+                    case 5:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader5.gif"));
+                        return;
+
+                    case 6:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader6.gif"));
+                        return;
+
+                    case 7:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader7.gif"));
+                        return;
+
+                    case 8:
+                        enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader8.gif"));
+                        return;
+                }
+
+            }
         }
 
         private void showGameOver(string msg)
