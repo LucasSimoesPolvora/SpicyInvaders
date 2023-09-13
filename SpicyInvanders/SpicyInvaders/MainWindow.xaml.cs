@@ -107,7 +107,6 @@ namespace SpicyInvaders
                     Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 }
 
-
                 if(x is Rectangle && (string)x.Tag == "enemy")
                 {
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed);
@@ -116,6 +115,18 @@ namespace SpicyInvaders
                     {
                         Canvas.SetLeft(x, -80);
                         Canvas.SetTop(x, Canvas.GetTop(x) + (x.Height + 10));
+                    }
+
+                    Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+                }
+
+                if(x is Rectangle && (string)x.Tag == "enemyBullet")
+                {
+                    Canvas.SetTop(x, Canvas.GetTop(x) + 10);
+
+                    if(Canvas.GetTop(x) > Height)
+                    {
+                        itemsToRemove.Add(x);
                     }
                 }
             }
