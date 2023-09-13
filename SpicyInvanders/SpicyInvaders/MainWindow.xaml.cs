@@ -90,7 +90,17 @@ namespace SpicyInvaders
                 BulletTimer = BulletTimerLimit;
             }
 
-            
+            foreach (var x in myCanvas.Children.OfType<Rectangle>())
+            {
+                if (x is Rectangle && (string)x.Tag == "bullet")
+                {
+                    Canvas.SetTop(x, Canvas.GetTop(x) - 20);
+                }
+                else if(x is Rectangle && (string)x.Tag == "enemyBullet")
+                {
+                    Canvas.SetTop(x, Canvas.GetTop(x) + 20);
+                }
+            }
         }
 
         private void KeyisDown(object sender, KeyEventArgs e)
@@ -159,7 +169,7 @@ namespace SpicyInvaders
         {
             Rectangle enemyBullet = new Rectangle
             {
-                Tag = "enemyBulet",
+                Tag = "enemyBullet",
                 Height = 40,
                 Width = 15,
                 Fill = Brushes.Yellow,
