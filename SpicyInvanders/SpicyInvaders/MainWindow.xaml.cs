@@ -61,6 +61,9 @@ namespace SpicyInvaders
         }
         private void GameLoop(object sender, EventArgs e)
         {
+            Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
+
+
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
             {
                 Canvas.SetLeft(Player, Canvas.GetLeft(Player) - 10);
@@ -95,10 +98,19 @@ namespace SpicyInvaders
                 if (x is Rectangle && (string)x.Tag == "bullet")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) - 20);
+
+                    if(Canvas.GetTop(x) < 10)
+                    {
+                        itemsToRemove.Add(x);
+                    }
+
+                    Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
                 }
-                else if(x is Rectangle && (string)x.Tag == "enemyBullet")
+
+
+                if(x is Rectangle && (string)x.Tag == "enemy")
                 {
-                    Canvas.SetTop(x, Canvas.GetTop(x) + 20);
+                    Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed);
                 }
             }
         }
@@ -207,7 +219,7 @@ namespace SpicyInvaders
 
                 enemyImages++;
 
-                if (enemyImages < 8)
+                if (enemyImages == 8)
                 {
                     enemyImages = 1;
                 }
@@ -216,35 +228,35 @@ namespace SpicyInvaders
                 {
                     case 1:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader1.gif"));
-                        return;
+                        break;
 
                     case 2:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader2.gif"));
-                        return;
+                        break;
 
                     case 3:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader3.gif"));
-                        return;
+                        break;
 
                     case 4:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader4.gif"));
-                        return;
+                        break;
 
                     case 5:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader5.gif"));
-                        return;
+                        break;
 
                     case 6:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader6.gif"));
-                        return;
+                        break;
 
                     case 7:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader7.gif"));
-                        return;
+                        break;
 
                     case 8:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader8.gif"));
-                        return;
+                        break;
                 }
 
             }
