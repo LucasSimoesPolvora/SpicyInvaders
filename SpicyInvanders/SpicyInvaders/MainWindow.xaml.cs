@@ -36,6 +36,8 @@ namespace SpicyInvaders
         int Totalenemies = 0;
         int enemySpeed = 6;
         bool gameOver = false;
+        int PlayerSpeed = 20;
+        int EnemyAltitude = 80;
 
         DispatcherTimer gameTimer = new DispatcherTimer();
         ImageBrush playerSkin = new ImageBrush();
@@ -57,32 +59,34 @@ namespace SpicyInvaders
 
             myCanvas.Focus();
 
-            makeEnnemies(10);
+            makeEnnemies(30);
         }
         private void GameLoop(object sender, EventArgs e)
         {
             Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
+            ennemiesLeft.Content = "Enemies Left : " + Totalenemies;
 
 
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
             {
-                Canvas.SetLeft(Player, Canvas.GetLeft(Player) - 10);
+                Canvas.SetLeft(Player, Canvas.GetLeft(Player) - PlayerSpeed);
             }
 
             else if (goRight == true && Canvas.GetLeft(Player) + 80 < Application.Current.MainWindow.Width)
             {
-                Canvas.SetLeft(Player, Canvas.GetLeft(Player) + 10);
+                Canvas.SetLeft(Player, Canvas.GetLeft(Player) + PlayerSpeed);
             }
 
             else if (goUp == true && Canvas.GetTop(Player) > 10)
             {
-                Canvas.SetTop(Player, Canvas.GetTop(Player) - 10);
+                Canvas.SetTop(Player, Canvas.GetTop(Player) - PlayerSpeed);
             }
 
             else if (goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
             {
-                Canvas.SetTop(Player, Canvas.GetTop(Player) + 10);
+                Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
             }
+            
 
             BulletTimer -= 3;
 
@@ -105,6 +109,21 @@ namespace SpicyInvaders
                     }
 
                     Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+                    foreach(var y in myCanvas.Children.OfType<Rectangle>())
+                    {
+                        if(y is Rectangle && (string)y.Tag == "enemy")
+                        {
+                            Rect enemyHit = new Rect (Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
+
+                            if (bullet.IntersectsWith(enemyHit))
+                            {
+                                itemsToRemove.Add(x);
+                                itemsToRemove.Add(y);
+                                Totalenemies--;
+                            }
+                        }
+                    }
                 }
 
                 if(x is Rectangle && (string)x.Tag == "enemy")
@@ -115,9 +134,15 @@ namespace SpicyInvaders
                     {
                         Canvas.SetLeft(x, -80);
                         Canvas.SetTop(x, Canvas.GetTop(x) + (x.Height + 10));
+                        
                     }
 
                     Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+                    if (playerHitBox.IntersectsWith(enemyHitBox))
+                    {
+                        showGameOver("You were killed by the invaders !!");
+                    }
                 }
 
                 if(x is Rectangle && (string)x.Tag == "enemyBullet")
@@ -128,7 +153,30 @@ namespace SpicyInvaders
                     {
                         itemsToRemove.Add(x);
                     }
+
+                    Rect enemyBulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+                    if (playerHitBox.IntersectsWith(enemyBulletHitBox))
+                    {
+                        showGameOver("You were Killed by the invader's bullet !!");
+                    }
                 }
+            }
+
+
+            foreach(Rectangle i in itemsToRemove)
+            {
+                myCanvas.Children.Remove(i);
+            }
+
+            if(Totalenemies < 10)
+            {
+                enemySpeed = 12;
+            }
+
+            if(Totalenemies < 1)
+            {
+                showGameOver("You win, you saved the world !!");
             }
         }
 
@@ -174,7 +222,6 @@ namespace SpicyInvaders
             }
 
             
-
             else if(e.Key == Key.Space)
             {
                 Rectangle newBullet = new Rectangle
@@ -216,6 +263,8 @@ namespace SpicyInvaders
         {
             int left = 0;
 
+            Totalenemies = limit;
+
             for (int i = 0; i < limit; i++)
             {
                 ImageBrush enemySkin = new ImageBrush();
@@ -228,7 +277,7 @@ namespace SpicyInvaders
                     Fill = enemySkin
                 };
 
-                Canvas.SetTop(newEnemy, 10);
+                Canvas.SetTop(newEnemy, 30);
                 Canvas.SetLeft(newEnemy, left);
 
                 myCanvas.Children.Add(newEnemy);
@@ -281,7 +330,10 @@ namespace SpicyInvaders
 
         private void showGameOver(string msg)
         {
+            gameOver = true;
+            gameTimer.Stop();
 
+            ennemiesLeft.Content += " " + msg + " Presse Enter to play again";
         }
 
 
