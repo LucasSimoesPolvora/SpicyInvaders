@@ -23,47 +23,71 @@ namespace SpicyInvaders
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Déclaration des constantes
+        const int CONST_INT_ENNEMIES = 10;
+        const int CONST_INT_NBR_ENNMIES_DIFF = 8;
+
+        // Déclaration des bool qui vont permettre de bouger
         bool goLeft;                        // Bool qui permettra d'aller à gauche
         bool goRight;                       // Bool qui permettra d'aller à droite
         bool goUp;                          // Bool qui permettra d'aller vers le haut
         bool goDown;                        // Bool qui permettra d'aller vers le bas
 
         List<Rectangle> itemsToRemove = new List<Rectangle>();
-
-        int enemyImages = 0;
-        int BulletTimer = 0;
-        int BulletTimerLimit = 90;
-        int Totalenemies = 0;
-        int enemySpeed = 6;
-        bool gameOver = false;
-        int PlayerSpeed = 20;
-        int EnemyAltitude = 80;
+        // Déclaration des variables
+        int enemyCompteur = 0;              // Compteur qui contera combien il y a de vaisseaux par ligne
+        int enemyRow = 0;                   // Compteur qui dira à quel ligne les ennemis vont spawn
+        int BulletTimer = 0;                // Int qui permettra que les ennemies auront un cooldown pour tirer
+        int BulletTimerLimit = 90;          // Timer pour les balles ennemies
+        int Totalenemies = 0;               // Nombre total d'ennemis présents
+        int enemySpeed = 6;                 // Vitesse des vaisseaux ennemis
+        bool gameOver = false;              // Bool pour permettre de faire une boucle pour jouer
+        int PlayerSpeed = 20;               // Vitesse du joueur
+        bool ennemyRight = false;           // Permet de savoir si l'ennemi va vers la droite ou la gauche
+        //int EnemyAltitude = 80;             // Montre l'altitude du vaisseau le plus bas
 
         DispatcherTimer gameTimer = new DispatcherTimer();
         ImageBrush playerSkin = new ImageBrush();
 
         public MainWindow()
         {
+            // Initialise le programme
             InitializeComponent();
 
+            
+
+            // Fait le height de mainwindow
+            Application.Current.MainWindow.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 200;
+
+            // Timer du jeu
             gameTimer.Tick += GameLoop;
             gameTimer.Interval = TimeSpan.FromMilliseconds(30);
+
+            // Démarre le timer
             gameTimer.Start();
 
             //string[] filePaths = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "player.png", SearchOption.AllDirectories);
 
-            
-                playerSkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/player.png"));
-                Player.Fill = playerSkin;
-            
+            // Vaisseau du joueur
+            playerSkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/player.png"));
+            Player.Fill = playerSkin;
 
+            // Permet de tout mettre dans l'écran
             myCanvas.Focus();
 
-            makeEnnemies(30);
+            // Crée des ennemies avec un nbr limité
+            makeEnnemies(CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF);
         }
+
+        /// <summary>
+        /// Permet de faire la loop pour jouer au jeu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e">Enregistre la touche qui a été touchée</param>
         private void GameLoop(object sender, EventArgs e)
         {
             Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
+
             ennemiesLeft.Content = "Enemies Left : " + Totalenemies;
 
 
@@ -86,35 +110,35 @@ namespace SpicyInvaders
             {
                 Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
             }
-            
+
 
             BulletTimer -= 3;
 
-            if(BulletTimer < 0)
+            if (BulletTimer < 0)
             {
-                EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10) ;
+                EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10);
 
                 BulletTimer = BulletTimerLimit;
             }
 
-            foreach (var x in myCanvas.Children.OfType<Rectangle>())
+            foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
             {
                 if (x is Rectangle && (string)x.Tag == "bullet")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) - 20);
 
-                    if(Canvas.GetTop(x) < 10)
+                    if (Canvas.GetTop(x) < 10)
                     {
                         itemsToRemove.Add(x);
                     }
 
                     Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
-                    foreach(var y in myCanvas.Children.OfType<Rectangle>())
+                    foreach (Rectangle y in myCanvas.Children.OfType<Rectangle>())
                     {
-                        if(y is Rectangle && (string)y.Tag == "enemy")
+                        if (y is Rectangle && (string)y.Tag == "enemy")
                         {
-                            Rect enemyHit = new Rect (Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
+                            Rect enemyHit = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
 
                             if (bullet.IntersectsWith(enemyHit))
                             {
@@ -126,14 +150,17 @@ namespace SpicyInvaders
                     }
                 }
 
-                if(x is Rectangle && (string)x.Tag == "enemy")
+                if (x is Rectangle && (string)x.Tag == "enemy")
                 {
+                    
                     Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed);
 
-                    if(Canvas.GetLeft(x) > Width)
+                    if (Canvas.GetLeft(x) > Width - 100)
                     {
                         Canvas.SetLeft(x, -80);
+                        
                         Canvas.SetTop(x, Canvas.GetTop(x) + (x.Height + 10));
+
                         
                     }
 
@@ -145,11 +172,11 @@ namespace SpicyInvaders
                     }
                 }
 
-                if(x is Rectangle && (string)x.Tag == "enemyBullet")
+                if (x is Rectangle && (string)x.Tag == "enemyBullet")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) + 10);
 
-                    if(Canvas.GetTop(x) > Height)
+                    if (Canvas.GetTop(x) > Height)
                     {
                         itemsToRemove.Add(x);
                     }
@@ -160,21 +187,23 @@ namespace SpicyInvaders
                     {
                         showGameOver("You were Killed by the invader's bullet !!");
                     }
+
+                    
                 }
             }
 
 
-            foreach(Rectangle i in itemsToRemove)
+            foreach (Rectangle i in itemsToRemove)
             {
                 myCanvas.Children.Remove(i);
             }
 
-            if(Totalenemies < 10)
+            if (Totalenemies < 10)
             {
                 enemySpeed = 12;
             }
 
-            if(Totalenemies < 1)
+            if (Totalenemies < 1)
             {
                 showGameOver("You win, you saved the world !!");
             }
@@ -183,11 +212,11 @@ namespace SpicyInvaders
         private void KeyisDown(object sender, KeyEventArgs e)
         {
             // permet d'aller à droite ou à gauche selon les touches
-            if(e.Key == Key.Left || e.Key == Key.A)
+            if (e.Key == Key.Left || e.Key == Key.A)
             {
                 goLeft = true;
             }
-            if(e.Key == Key.Right || e.Key == Key.D)
+            if (e.Key == Key.Right || e.Key == Key.D)
             {
                 goRight = true;
             }
@@ -221,8 +250,8 @@ namespace SpicyInvaders
                 goDown = false;
             }
 
-            
-            else if(e.Key == Key.Space)
+
+            else if (e.Key == Key.Space)
             {
                 Rectangle newBullet = new Rectangle
                 {
@@ -234,7 +263,7 @@ namespace SpicyInvaders
                 };
 
                 Canvas.SetTop(newBullet, Canvas.GetTop(Player) - newBullet.Height);
-                Canvas.SetLeft(newBullet,Canvas.GetLeft(Player) + Player.Width / 2);
+                Canvas.SetLeft(newBullet, Canvas.GetLeft(Player) + Player.Width / 2);
 
                 myCanvas.Children.Add(newBullet);
             }
@@ -261,7 +290,7 @@ namespace SpicyInvaders
 
         private void makeEnnemies(int limit)
         {
-            int left = 0;
+            int left = 100;
 
             Totalenemies = limit;
 
@@ -277,20 +306,22 @@ namespace SpicyInvaders
                     Fill = enemySkin
                 };
 
-                Canvas.SetTop(newEnemy, 30);
+                Canvas.SetTop(newEnemy, enemyRow * 60 + 30);
                 Canvas.SetLeft(newEnemy, left);
 
                 myCanvas.Children.Add(newEnemy);
-                left -= 60;
+                left = -60;
 
-                enemyImages++;
+                enemyCompteur++;
 
-                if (enemyImages == 8)
+                if (enemyCompteur == CONST_INT_ENNEMIES)
                 {
-                    enemyImages = 1;
+                    enemyCompteur = 1;
+                    enemyRow++;
+                    left += 100;
                 }
 
-                switch (enemyImages)
+                switch (enemyRow)
                 {
                     case 1:
                         enemySkin.ImageSource = new BitmapImage(new Uri("C:/Users/pd57mgs/Documents/GitHub/SpicyInvaders/SpicyInvanders/SpicyInvaders/Images/invader1.gif"));
@@ -333,7 +364,8 @@ namespace SpicyInvaders
             gameOver = true;
             gameTimer.Stop();
 
-            ennemiesLeft.Content += " " + msg + " Presse Enter to play again";
+            ennemiesLeft.Content += " " + msg + " Press Enter to play again";
+            
         }
 
 
