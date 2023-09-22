@@ -46,11 +46,9 @@ C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\bin
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\bin\Debug\net6.0-windows\SpicyInvaders.dll
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\bin\Debug\net6.0-windows\SpicyInvaders.pdb
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders.csproj.AssemblyReference.cache
-C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\MainWindow.g.cs
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\App.g.cs
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders_MarkupCompile.cache
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders_MarkupCompile.lref
-C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\MainWindow.baml
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders.g.resources
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders.AssemblyInfoInputs.cache
@@ -61,3 +59,5 @@ C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders.pdb
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyInvaders.genruntimeconfig.cache
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\ref\SpicyInvaders.dll
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyGame\MainWindow.g.cs
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvanders\SpicyInvaders\obj\Debug\net6.0-windows\SpicyGame\MainWindow.baml
