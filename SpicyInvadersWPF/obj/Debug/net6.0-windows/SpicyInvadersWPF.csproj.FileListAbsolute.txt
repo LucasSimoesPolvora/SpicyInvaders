@@ -19,3 +19,14 @@ C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\SpicyInvadersWPF.pdb
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\SpicyInvadersWPF.genruntimeconfig.cache
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\ref\SpicyInvadersWPF.dll
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader1.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader2.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader3.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader4.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader5.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader6.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader7.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\invader8.gif
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\player.png
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\Menu.g.cs
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\Menu.baml
