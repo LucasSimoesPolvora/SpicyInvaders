@@ -160,8 +160,6 @@ namespace SpicyInvaders
                         {
                             ValeurMort--;
                         }
-                        
-                        
                     }
 
                     // Si ca touche un ennemi l'ennemi disparait
@@ -209,13 +207,13 @@ namespace SpicyInvaders
                         isGoingDown = false;
                     }
 
-                    if (Canvas.GetLeft(x) == Application.Current.MainWindow.Width - 200)
+                    if (Canvas.GetLeft(x) + 80 > Application.Current.MainWindow.Width)
                     {
                         isGoingDown = true;
                         isGoingRight = false;
                     }
 
-                    if (Canvas.GetLeft(x) == 200)
+                    if (Canvas.GetLeft(x) == 300)
                     {
                         isGoingDown = true;
                         isGoingRight = true;
@@ -373,7 +371,7 @@ namespace SpicyInvaders
 
         private void makeEnnemies(int limit)
         {
-            int left = 100;
+            int left = 200;
             
             Totalenemies = limit;
 
