@@ -159,6 +159,7 @@ namespace SpicyInvaders
                         if(ValeurMort >= 10)
                         {
                             ValeurMort--;
+                            
                         }
                     }
 
@@ -219,7 +220,7 @@ namespace SpicyInvaders
                         isGoingRight = true;
                     }
 
-                    if(Canvas.GetTop(x) == Height - 100)
+                    if(Canvas.GetTop(x) == Application.Current.MainWindow.Height - 100)
                     {
                         showGameOverLose("The invaders invaded earth");
                     }
@@ -274,7 +275,6 @@ namespace SpicyInvaders
             {
                 showGameOverLose("You win, you saved the world !!");
             }
-
         }
 
         private void KeyisDown(object sender, KeyEventArgs e)
