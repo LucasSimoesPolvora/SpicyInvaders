@@ -1,0 +1,12 @@
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\bin\Debug\net6.0-windows\WPFLibrary.deps.json
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\bin\Debug\net6.0-windows\WPFLibrary.dll
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\bin\Debug\net6.0-windows\WPFLibrary.pdb
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\WPFLibrary.csproj.AssemblyReference.cache
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\WPFLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\WPFLibrary.AssemblyInfoInputs.cache
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\WPFLibrary.AssemblyInfo.cs
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\WPFLibrary.csproj.CoreCompileInputs.cache
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\WPFLibrary.dll
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\refint\WPFLibrary.dll
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\WPFLibrary.pdb
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\WPFLibrary\obj\Debug\net6.0-windows\ref\WPFLibrary.dll

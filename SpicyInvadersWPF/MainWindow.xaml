@@ -1,14 +1,14 @@
-﻿<Window x:Class="SpicyInvaders.MainWindow"
+﻿<Window x:Class="SpicyInvadersWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SpicyInvaders"
+        xmlns:local="clr-namespace:SpicyInvadersWPF"
         mc:Ignorable="d"
-        Title="SpicyInvaders" Height="1000" Width="1500">
+        Title="SpicyInvadersWPF" Height="1000" Width="1500">
     <Canvas Name="myCanvas" Focusable="True" Background="Black" KeyDown="KeyisDown" KeyUp="KeyisUp">
         <Label Name="Score" Foreground="White" FontSize="16" FontWeight="ExtraBold"></Label>
         <Label Name="bulletLeft" Foreground="White" FontSize="16" FontWeight="ExtraBold" Canvas.Left="1300">Bullets Left : </Label>
-        <Rectangle Name="Player" Fill="White" Height="65" Width="55" Canvas.Left="475" Canvas.Top="600"/>
+        
     </Canvas>
 </Window>

@@ -30,3 +30,6 @@ C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Images\player.png
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\Menu.g.cs
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\Menu.baml
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\SpicyInvadersWPF.csproj.CopyComplete
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Model.dll
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\Model.pdb

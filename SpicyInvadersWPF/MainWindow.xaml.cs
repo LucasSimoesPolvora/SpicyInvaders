@@ -15,47 +15,50 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Timers;
+using Model;
 
-namespace SpicyInvaders
+namespace SpicyInvadersWPF
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Déclaration des constantes
-        const int CONST_INT_ENNEMIES = 8;                  // Nbr d'ennemis par ligne
-        const int CONST_INT_NBR_ENNMIES_DIFF = 8;           // nbr d'ennemis différents
-        const int CONST_INT_COOLDOWN_TIME = 20;             // Cooldown pour éviter les spams des balles
+        enemy enemy = new enemy();
+        config config = new config();
+        bullet bullet = new bullet();
+        player player = new player();
+        score score = new score();
+        
 
         // Déclaration des bool qui vont permettre de bouger
-        bool goLeft;                        // Bool qui permettra d'aller à gauche
-        bool goRight;                       // Bool qui permettra d'aller à droite
-        bool goUp;                          // Bool qui permettra d'aller vers le haut
-        bool goDown;                        // Bool qui permettra d'aller vers le bas
+        //bool goLeft;                        // Bool qui permettra d'aller à gauche
+        //bool goRight;                       // Bool qui permettra d'aller à droite
+        //bool goUp;                          // Bool qui permettra d'aller vers le haut
+        //bool goDown;                        // Bool qui permettra d'aller vers le bas
 
         List<Rectangle> itemsToRemove = new List<Rectangle>();
         // Déclaration des variables
-        int enemyCompteur = 0;              // Compteur qui contera combien il y a de vaisseaux par ligne
-        int enemyRow = 0;                   // Compteur qui dira à quel ligne les ennemis vont spawn
-        int BulletTimer = 0;                // Int qui permettra que les ennemies auront un cooldown pour tirer
-        int BulletTimerLimit = 90;          // Timer pour les balles ennemies
-        int Totalenemies = 0;               // Nombre total d'ennemis présents
-        int enemySpeed = 4;                 // Vitesse des vaisseaux ennemis
-        int enemySpeedY = 25;
+        //int enemyCompteur = 0;              // Compteur qui contera combien il y a de vaisseaux par ligne
+        //int enemyRow = 0;                   // Compteur qui dira à quel ligne les ennemis vont spawn
+        //int BulletTimer = 0;                // Int qui permettra que les ennemies auront un cooldown pour tirer
+        //int BulletTimerLimit = 90;          // Timer pour les balles ennemies
+        //int Totalenemies = 0;               // Nombre total d'ennemis présents
+        //int enemySpeed = 4;                 // Vitesse des vaisseaux ennemis
+        //int enemySpeedY = 25;
         double Boost = 1;
         bool gameOver = false;              // Bool pour permettre de faire une boucle pour jouer
-        int PlayerSpeed = 20;               // Vitesse du joueur
+        //int PlayerSpeed = 20;               // Vitesse du joueur
         bool isGoingRight = true;           // Permet de savoir si l'ennemi va vers la droite ou la gauche
         bool isGoingDown = false;
-        int NumberBullets = 30;             // Nbr de balles qu'on peut tirer sans cooldowns
-        double Cooldown = CONST_INT_COOLDOWN_TIME;
+        //int NumberBullets = 30;             // Nbr de balles qu'on peut tirer sans cooldowns
+        //double Cooldown = config.CONST_INT_COOLDOWN_TIME;
         bool isRestarting = false;
-        int intScore = 0;                      // Compte le score
-        int ValeurMort = 40;                // Valeur maximale d'une mort
+        //int intScore = 0;                   // Compte le score
+        //int ValeurMort = 40;                // Valeur maximale d'une mort
 
         DispatcherTimer gameTimer = new DispatcherTimer();      // pour faire le timer du jeu
-        ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
+        //ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
 
         public MainWindow()
         {
@@ -72,20 +75,12 @@ namespace SpicyInvaders
             // Démarre le timer
             gameTimer.Start();
 
-
-            // Vaisseau du joueur
-            string basePath = AppDomain.CurrentDomain.BaseDirectory;
-            string imagePath = System.IO.Path.Combine(basePath, "Images/player.png");
-
-            playerSkin.ImageSource = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
-
-            Player.Fill = playerSkin;
-
             // Permet de tout mettre dans l'écran
             myCanvas.Focus();
 
             // Crée des ennemies avec un nbr limité
-            makeEnnemies(CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF);
+            enemy.makeEnnemies(myCanvas);
+            player.Display();
         }
 
         /// <summary>
@@ -96,13 +91,15 @@ namespace SpicyInvaders
         private void GameLoop(object sender, EventArgs e)
         {
             // Hitbox du joueur
-            Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
+            //Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
 
             // Labels de la page XAML
-            Score.Content = "Score : " + intScore;
-            bulletLeft.Content = "Bullet Left : " + NumberBullets;
+            //Score.Content = "Score : " + intScore;
+            bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
-            // Mouvement du joueur
+
+
+            /*// Mouvement du joueur
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
             {
                 Canvas.SetLeft(Player, Canvas.GetLeft(Player) - PlayerSpeed);
@@ -121,26 +118,26 @@ namespace SpicyInvaders
             else if (goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
             {
                 Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
-            }
-
+            }*/
+            /*
             // Gain d'une balle après un cooldown
             Cooldown--;
             if (Cooldown == 0)
             {
                 NumberBullets++;
-                Cooldown = CONST_INT_COOLDOWN_TIME;
-            }
+                Cooldown = config.CONST_INT_COOLDOWN_TIME;
+            }*/
 
 
             // Création des balles enemies
-            BulletTimer = BulletTimer - 3;
+            /*BulletTimer = BulletTimer - 3;
 
             if (BulletTimer < 0)
             {
-                EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10);
+                bullet.EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10, myCanvas);
 
                 BulletTimer = BulletTimerLimit;
-            }
+            }*/
 
 
             // Forach qui regroupe : Ennemis / Balles / Hitbox / Mort et suppression des objets
@@ -156,9 +153,9 @@ namespace SpicyInvaders
                     {
                         itemsToRemove.Add(x);
 
-                        if(ValeurMort >= 10)
+                        if(score.MaxDeadValue >= 10)
                         {
-                            ValeurMort--;
+                            score.MaxDeadValue--;
                             
                         }
                     }
@@ -176,8 +173,8 @@ namespace SpicyInvaders
                             {
                                 itemsToRemove.Add(x);
                                 itemsToRemove.Add(y);
-                                Totalenemies--;
-                                intScore += ValeurMort;
+                                enemy.Totalenemies--;
+                                score.Score += score.MaxDeadValue;
                             }
                         }
                     }
@@ -188,11 +185,11 @@ namespace SpicyInvaders
                 {
                     if (isGoingRight)
                     {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed * Boost);
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) + enemy.enemySpeed * Boost);
                     }
                     else if (!isGoingRight)
                     {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) - enemySpeed * Boost);
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) - enemy.enemySpeed * Boost);
                     }
 
                     if (isGoingDown)
@@ -201,7 +198,7 @@ namespace SpicyInvaders
                         {
                             if (y is Rectangle && (string)y.Tag == "enemy")
                             {
-                                Canvas.SetTop(y, Canvas.GetTop(y) + enemySpeedY * Boost);
+                                Canvas.SetTop(y, Canvas.GetTop(y) + enemy.enemySpeedY * Boost);
                             }
 
                         }
@@ -227,10 +224,10 @@ namespace SpicyInvaders
 
                     Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
-                    if (playerHitBox.IntersectsWith(enemyHitBox))
+                    /*if (playerHitBox.IntersectsWith(enemyHitBox))
                     {
                         showGameOverLose("You were killed by the invaders !!");
-                    }
+                    }*/
                 }
 
                 if (x is Rectangle && (string)x.Tag == "enemyBullet")
@@ -244,10 +241,10 @@ namespace SpicyInvaders
 
                     Rect enemyBulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
-                    if (playerHitBox.IntersectsWith(enemyBulletHitBox))
+                    /*if (playerHitBox.IntersectsWith(enemyBulletHitBox))
                     {
                         showGameOverLose("You were Killed by the invader's bullet !!");
-                    }
+                    }*/
                 }
             }
 
@@ -258,20 +255,20 @@ namespace SpicyInvaders
             }
 
             // Vitesse des ennemies selon le nombre d'ennemis restants
-            if (Totalenemies < (CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF) / 2)
+            if (enemy.Totalenemies < (config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF) / 2)
             {
                 Boost = 1.5;
             }
-            else if (Totalenemies < ((CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF) / 4) * 3)
+            else if (enemy.Totalenemies < ((config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF) / 4) * 3)
             {
                 Boost = 2;
             }
-            else if (Totalenemies < ((CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF) / 8) * 7)
+            else if (enemy.Totalenemies < ((config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF) / 8) * 7)
             {
                 Boost = 2;
             }
 
-            if (Totalenemies < 1)
+            if (enemy.Totalenemies < 1)
             {
                 showGameOverLose("You win, you saved the world !!");
             }
@@ -279,7 +276,8 @@ namespace SpicyInvaders
 
         private void KeyisDown(object sender, KeyEventArgs e)
         {
-            // permet d'aller à droite ou à gauche selon les touches
+            player.MovementOn(sender, e, myCanvas);
+            /*// permet d'aller à droite ou à gauche selon les touches
             if (e.Key == Key.Left || e.Key == Key.A)
             {
                 goLeft = true;
@@ -295,12 +293,13 @@ namespace SpicyInvaders
             if (e.Key == Key.Down || e.Key == Key.S)
             {
                 goDown = true;
-            }
+            }*/
         }
 
         private void KeyisUp(object sender, KeyEventArgs e)
         {
-            // permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
+            player.MovementOff(sender, e, myCanvas);
+            /*// permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
             if (e.Key == Key.Left || e.Key == Key.A)
             {
                 goLeft = false;
@@ -321,7 +320,7 @@ namespace SpicyInvaders
 
             else if (e.Key == Key.Space)
             {
-                if (NumberBullets == 0)
+                if (bullet.NumberBullets == 0)
                 {
 
                 }
@@ -340,17 +339,17 @@ namespace SpicyInvaders
                     Canvas.SetLeft(newBullet, Canvas.GetLeft(Player) + Player.Width / 2);
 
                     myCanvas.Children.Add(newBullet);
-                    NumberBullets--;
+                    bullet.NumberBullets--;
                 }
             }
             else if (e.Key == Key.Escape)
             {
 
             }
-
+            */
         }
 
-        private void EnnemyBulletMaker(double x, double y)
+        /*private void EnnemyBulletMaker(double x, double y)
         {
 
             Rectangle enemyBullet = new Rectangle
@@ -367,13 +366,14 @@ namespace SpicyInvaders
             Canvas.SetLeft(enemyBullet, x);
 
             myCanvas.Children.Add(enemyBullet);
-        }
+        }*/
 
-        private void makeEnnemies(int limit)
+        
+        /*private void makeEnnemies(int limit)
         {
             int left = 200;
-            
-            Totalenemies = limit;
+
+            enemy.Totalenemies = limit;
 
 
             for (int i = 0; i < limit; i++)
@@ -393,20 +393,20 @@ namespace SpicyInvaders
                 myCanvas.Children.Add(newEnemy);
 
                 // Faire le retour à la ligne
-                enemyCompteur++;
-                if (enemyCompteur - 1 == CONST_INT_ENNEMIES)
+                enemy.enemyCompteur++;
+                if (enemy.enemyCompteur - 1 == config.CONST_INT_ENNEMIES)
                 {
-                    enemyCompteur = 1;
-                    enemyRow++;
+                    enemy.enemyCompteur = 1;
+                    enemy.enemyRow++;
                 }
 
-                Canvas.SetTop(newEnemy, enemyRow * 60 + 30);
-                left = 85 * enemyCompteur;
+                Canvas.SetTop(newEnemy, enemy.enemyRow * 60 + 30);
+                left = 85 * enemy.enemyCompteur;
                 Canvas.SetLeft(newEnemy, left);
 
 
                 // Mettre l'image de l'invader
-                switch (enemyRow)
+                switch (enemy.enemyRow)
                 {
                     case 0:
                         string basePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -466,7 +466,8 @@ namespace SpicyInvaders
                 }
 
             }
-        }
+        }*/
+        
 
         private void showGameOverLose(string msg)
         {

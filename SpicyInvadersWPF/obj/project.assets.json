@@ -1,11 +1,33 @@
 {
   "version": 3,
   "targets": {
-    "net6.0-windows7.0": {}
+    "net6.0-windows7.0": {
+      "Model/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/Model.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Model.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.WindowsDesktop.App.WPF"
+        ]
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Model/1.0.0": {
+      "type": "project",
+      "path": "../WPFLibrary/Model.csproj",
+      "msbuildProject": "../WPFLibrary/Model.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net6.0-windows7.0": []
+    "net6.0-windows7.0": [
+      "Model >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\pd57mgs\\.nuget\\packages\\": {},
@@ -37,7 +59,11 @@
       "frameworks": {
         "net6.0-windows7.0": {
           "targetAlias": "net6.0-windows",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\pd57mgs\\Documents\\GitHub\\SpicyInvaders\\WPFLibrary\\Model.csproj": {
+              "projectPath": "C:\\Users\\pd57mgs\\Documents\\GitHub\\SpicyInvaders\\WPFLibrary\\Model.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
