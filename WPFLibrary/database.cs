@@ -9,26 +9,30 @@ namespace Model
 {
     public class database
     {
-        public string ConnectionToDB()
+        public string[] ConnectionToDB(string sql, string table1, string table2)
         {
-            string str = "s";
+            string[] str = new string[10];
+            List<string> list = new List<string>();
             try
             {
                 string connstring = "server=localhost; uid=root; pwd=root; database=db_space_invaders; port=6033;";
                 MySqlConnection con = new MySqlConnection();
                 con.ConnectionString = connstring;
                 con.Open();
-                string sql = "SELECT * FROM t_arme";
+                //sql = "SELECT * FROM t_arme";
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 MySqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                for (int i = 0; i < reader.FieldCount; i++)
                 {
-                    str = reader["idArme"] + " " + reader["armNom"];
+                    while (reader.Read())
+                    {
+                        str[i] = reader[table1] + " " + reader[table2];
+                    }
                 }
             }
             catch (MySqlException ex)
             {
-                str = ex.Message;
+                str[0] = ex.Message;
             }
             return str;
         }
@@ -36,6 +40,16 @@ namespace Model
         public void WriteScore()
         {
 
+        }
+
+        public string[] ShowHighscore()
+        {
+            string cmdSql = "SELECT jouPseudo, jouNombrePoints FROM t_joueur";
+            string table1 = "jouPseudo";
+            string table2 = "jouNombrePoints";
+            string[] Answer = new string[10];
+            Answer = ConnectionToDB(cmdSql, table1, table2);
+            return Answer;
         }
     }
 }
