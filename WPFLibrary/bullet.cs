@@ -25,7 +25,6 @@ namespace Model
         double Cooldown = config.CONST_INT_COOLDOWN_TIME;
         public int NumberBullets = 30;             // Nbr de balles qu'on peut tirer sans cooldowns
 
-
         public void EnnemyBulletMaker(double x, double y, Canvas myCanvas)
         {
 

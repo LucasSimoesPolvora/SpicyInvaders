@@ -97,8 +97,7 @@ namespace SpicyInvadersWPF
             //Score.Content = "Score : " + intScore;
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
-            
-
+            player.MovementAction();
             /*// Mouvement du joueur
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
             {
@@ -156,7 +155,6 @@ namespace SpicyInvadersWPF
                         if(score.MaxDeadValue >= 10)
                         {
                             score.MaxDeadValue--;
-                            
                         }
                     }
 
@@ -205,19 +203,19 @@ namespace SpicyInvadersWPF
                         isGoingDown = false;
                     }
 
-                    if (Canvas.GetLeft(x) + 80 > Application.Current.MainWindow.Width)
+                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.Width - 100)
                     {
                         isGoingDown = true;
                         isGoingRight = false;
                     }
 
-                    if (Canvas.GetLeft(x) == 300)
+                    if (Canvas.GetLeft(x) < 10)
                     {
                         isGoingDown = true;
                         isGoingRight = true;
                     }
 
-                    if(Canvas.GetTop(x) == Application.Current.MainWindow.Height - 100)
+                    if(Canvas.GetTop(x) > Application.Current.MainWindow.Height - 200)
                     {
                         showGameOverLose("The invaders invaded earth");
                     }

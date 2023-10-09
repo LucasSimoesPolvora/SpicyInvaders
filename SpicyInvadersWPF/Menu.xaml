@@ -6,7 +6,5 @@
         xmlns:local="clr-namespace:SpicyInvadersWPF"
         mc:Ignorable="d"
         Title="Menu" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Label Name="str2"></Label>
 </Window>
