@@ -80,7 +80,7 @@ namespace SpicyInvadersWPF
 
             // Crée des ennemies avec un nbr limité
             enemy.makeEnnemies(myCanvas);
-            player.Display();
+            player.Display(Player);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace SpicyInvadersWPF
             //Score.Content = "Score : " + intScore;
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
-
+            
 
             /*// Mouvement du joueur
             if (goLeft == true && Canvas.GetLeft(Player) > 10)

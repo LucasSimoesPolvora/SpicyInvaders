@@ -33,26 +33,17 @@ namespace Model
             Width = 65,
             Fill = playerSkin
         };
-        public void Display() 
+        public void Display(Rectangle Playercaracter) 
         {
             ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
-            Rectangle PlayerCaracter = new Rectangle
-            {
-                Tag = "Player",
-                Height = 65,
-                Width = 65,
-                Fill = playerSkin
-            };
+            
             // Vaisseau du joueur
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             string imagePath = System.IO.Path.Combine(basePath, "Images/player.png");
 
             playerSkin.ImageSource = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
 
-            PlayerCaracter.Fill = playerSkin;
-
-            Canvas.SetLeft(PlayerCaracter, 10/*Application.Current.MainWindow.Width / 2*/);
-            Canvas.SetTop(PlayerCaracter, 10/*Application.Current.MainWindow.Height - 150*/);
+            Playercaracter.Fill = playerSkin;
         }
 
         public void MovementAction()
