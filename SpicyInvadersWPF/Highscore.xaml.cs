@@ -32,13 +32,19 @@ namespace SpicyInvadersWPF
             database db = new database();
 
             string[] tab_highscore = new string[10];
-            tab_highscore =  db.ShowHighscore();
+            tab_highscore = db.ShowHighscore();
 
-            for(int i = 0; i < tab_highscore.Length / 2; i++)
+            for (int i = 0; i < tab_highscore.Length / 2; i++)
             {
-                Placement.Content = tab_highscore[i] + "            " + tab_highscore[i+5];
+                Placement.Content = tab_highscore[i] + "            " + tab_highscore[i + 5];
             }
         }
 
+        private void KeyisDown(object sender, KeyEventArgs e)
+        {
+        }
+        private void KeyisDown(object sender, KeyEventArgs e)
+        {
+        }
     }
 }
