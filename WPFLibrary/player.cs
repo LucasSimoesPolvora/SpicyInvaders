@@ -33,7 +33,7 @@ namespace Model
             Width = 65,
             Fill = playerSkin
         };
-        public void Display(Rectangle Playercaracter)
+        public void display(Rectangle Playercaracter)
         {
             ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
 
@@ -46,7 +46,7 @@ namespace Model
             Playercaracter.Fill = playerSkin;
         }
 
-        public void MovementOn(object sender, KeyEventArgs e, Canvas myCanvas)
+        public void movementOn(object sender, KeyEventArgs e, Canvas myCanvas)
         {
             // permet d'aller à droite ou à gauche selon les touches
             if (e.Key == Key.Left || e.Key == Key.A)
@@ -67,7 +67,7 @@ namespace Model
             }
         }
 
-        public void MovementOff(object sender, KeyEventArgs e)
+        public void movementOff(object sender, KeyEventArgs e)
         {
             // permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
             if (e.Key == Key.Left || e.Key == Key.A)
@@ -88,7 +88,7 @@ namespace Model
             }
         }
 
-        public void MovementAction(Rectangle Player)
+        public void movementAction(Rectangle Player)
         {
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
             {
@@ -110,14 +110,10 @@ namespace Model
                 Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
             }
         }
-        public void Colider()
+     
+        public void update(Rectangle Player)
         {
-            // Hitbox du joueur
-            Rect playerHitBox = new Rect(Canvas.GetLeft(PlayerCaracter), Canvas.GetTop(PlayerCaracter), PlayerCaracter.Width, PlayerCaracter.Height);
-        }
-        public void Update(Rectangle Player)
-        {
-            MovementAction(Player);
+            movementAction(Player);
         }
     }
 }

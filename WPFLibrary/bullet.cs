@@ -28,6 +28,12 @@ namespace Model
         score score = new score();
         enemy enemy = new enemy();
 
+        /// <summary>
+        /// Fait apparaître les balles ennemis sur la fenêtre
+        /// </summary>
+        /// <param name="x">Distance sur l'axe X</param>
+        /// <param name="y">Distance sur l'axe Y</param>
+        /// <param name="myCanvas">Permet d'avoir accès aux canvas crée sur le fichier xaml pour crée des balles qui peuvent tuer le joueur</param>
         public void ennemyBulletMaker(double x, double y, Canvas myCanvas)
         {
 
@@ -47,6 +53,11 @@ namespace Model
             myCanvas.Children.Add(enemyBullet);
         }
 
+        /// <summary>
+        /// Fait un cooldown aux balles ennemies
+        /// </summary>
+        /// <param name="myCanvas"></param>
+        /// <param name="Player"></param>
         public void enemyBulletCooldown(Canvas myCanvas, Rectangle Player)
         {
             BulletTimer = BulletTimer - 3;
@@ -59,11 +70,17 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Fait bouger les balles ennemies
+        /// </summary>
         public void enemyBulletMovement()
         {
 
         }
 
+        /// <summary>
+        ///  fait un cooldown aux balles ennemies
+        /// </summary>
         public void playerBulletCooldown()
         {
             Cooldown--;
@@ -74,6 +91,12 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Crée les balles du joueur
+        /// </summary>
+        /// <param name="e">Touche que le joueur a cliqué</param>
+        /// <param name="myCanvas">Permet d'avoir accès aux canvas du fichier xaml afin de créer des balles qui peuvent tuer les ennemis</param>
+        /// <param name="Player">Rectangle qui reprèsente le joueur</param>
         public void playerBulletMaker(KeyEventArgs e, Canvas myCanvas, Rectangle Player)
         {
             if (e.Key == Key.Space)
@@ -106,6 +129,10 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Fait bouger les balles du joueur dans l'axe Vertical
+        /// </summary>
+        /// <param name="myCanvas">Permet d'avoir accès aux Canvas du fichier xaml pour faire bouger les balles existantes</param>
         public void playerBulletMovement(Canvas myCanvas)
         {
             foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
@@ -125,29 +152,18 @@ namespace Model
                             score.MaxDeadValue--;
                         }
                     }
-
-                    // Si ca touche un ennemi l'ennemi disparait
-                    Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
-
-                    foreach (Rectangle y in myCanvas.Children.OfType<Rectangle>())
-                    {
-                        if (y is Rectangle && (string)y.Tag == "enemy")
-                        {
-                            Rect enemyHit = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
-
-                            if (bullet.IntersectsWith(enemyHit))
-                            {
-                                itemsToRemove.Add(x);
-                                itemsToRemove.Add(y);
-                                score.ScoreValue += score.MaxDeadValue;
-
-                                score.MaxDeadValue--;
-
-                            }
-                        }
-                    }
                 }
             }
+        }
+
+
+        /// <summary>
+        /// Permet de faire l'update de toutes les balles
+        /// </summary>
+        public void update(Canvas myCanvas)
+        {
+            playerBulletMovement(myCanvas);
+            enemyBulletMovement();
         }
     }
 }

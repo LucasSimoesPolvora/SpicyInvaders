@@ -11,7 +11,7 @@ namespace Model
         public int ScoreValue = 0;
         public int MaxDeadValue = 40;
 
-        public void ScoreIsUp()
+        public void scoreIsUp()
         {
 
         }

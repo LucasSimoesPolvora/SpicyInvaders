@@ -79,8 +79,10 @@ namespace SpicyInvadersWPF
             myCanvas.Focus();
 
             // Crée des ennemies avec un nbr limité
-            enemy.makeEnnemies(myCanvas);
-            player.Display(Player);
+            enemy.display(myCanvas);
+
+            // Affiche le joueur sur la fenêtre
+            player.display(Player);
         }
 
         /// <summary>
@@ -90,14 +92,14 @@ namespace SpicyInvadersWPF
         /// <param name="e">Enregistre la touche qui a été touchée</param>
         private void GameLoop(object sender, EventArgs e)
         {
-            // Hitbox du joueur
-            //Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
+            //Hitbox du joueur
+            Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
 
             // Labels de la page XAML
             //Score.Content = "Score : " + intScore;
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
-            player.Update(Player);
+            player.update(Player);
 
             bullet.playerBulletCooldown();
 
@@ -126,23 +128,9 @@ namespace SpicyInvadersWPF
             // Forach qui regroupe : Ennemis / Balles / Hitbox / Mort et suppression des objets
             foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
             {
-                /*
-                // Création de la balle 
+                // Permet de choisir les rectangles avec un tag "bullet" 
                 if (x is Rectangle && (string)x.Tag == "bullet")
                 {
-                    // Position et vitesse de la balle
-                    Canvas.SetTop(x, Canvas.GetTop(x) - 20);
-
-                    if (Canvas.GetTop(x) < 10)
-                    {
-                        itemsToRemove.Add(x);
-
-                        if(score.MaxDeadValue >= 10)
-                        {
-                            score.MaxDeadValue--;
-                        }
-                    }
-
                     // Si ca touche un ennemi l'ennemi disparait
                     Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
@@ -161,11 +149,12 @@ namespace SpicyInvadersWPF
                             }
                         }
                     }
-                }*/
+                }
 
-                // Mouvement des vaisseaux ennemis
+                // Permet de choisir les rectangles avec un tag "enemy"
                 if (x is Rectangle && (string)x.Tag == "enemy")
                 {
+                    /*
                     if (isGoingRight)
                     {
                         Canvas.SetLeft(x, Canvas.GetLeft(x) + enemy.enemySpeed * Boost);
@@ -203,16 +192,19 @@ namespace SpicyInvadersWPF
                     if(Canvas.GetTop(x) > Application.Current.MainWindow.Height - 200)
                     {
                         showGameOverLose("The invaders invaded earth");
-                    }
+                    }*/
 
+                    // Hitbox de l'ennemi
                     Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
-                    /*if (playerHitBox.IntersectsWith(enemyHitBox))
+                    // Si l'hitbox de l'ennemi touche l0hitbox du joueur le joueur meurt
+                    if (playerHitBox.IntersectsWith(enemyHitBox))
                     {
                         showGameOverLose("You were killed by the invaders !!");
-                    }*/
+                    }
                 }
 
+                // Permet de choisir tous les rectangles avec un tag "enemyBullet"
                 if (x is Rectangle && (string)x.Tag == "enemyBullet")
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) + 10);
@@ -224,10 +216,10 @@ namespace SpicyInvadersWPF
 
                     Rect enemyBulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
-                    /*if (playerHitBox.IntersectsWith(enemyBulletHitBox))
+                    if (playerHitBox.IntersectsWith(enemyBulletHitBox))
                     {
                         showGameOverLose("You were Killed by the invader's bullet !!");
-                    }*/
+                    }
                 }
             }
 
@@ -238,15 +230,15 @@ namespace SpicyInvadersWPF
             }
 
             // Vitesse des ennemies selon le nombre d'ennemis restants
-            if (enemy.Totalenemies < (config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF) / 2)
+            if (enemy.Totalenemies < (enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 2)
             {
                 Boost = 1.5;
             }
-            else if (enemy.Totalenemies < ((config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF) / 4) * 3)
+            else if (enemy.Totalenemies < ((enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 4) * 3)
             {
                 Boost = 2;
             }
-            else if (enemy.Totalenemies < ((config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF) / 8) * 7)
+            else if (enemy.Totalenemies < ((enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 8) * 7)
             {
                 Boost = 2;
             }
@@ -259,12 +251,12 @@ namespace SpicyInvadersWPF
 
         private void KeyisDown(object sender, KeyEventArgs e)
         {
-            player.MovementOn(sender, e, myCanvas);
+            player.movementOn(sender, e, myCanvas);
         }
 
         private void KeyisUp(object sender, KeyEventArgs e)
         {
-            player.MovementOff(sender, e);
+            player.movementOff(sender, e);
             bullet.playerBulletMaker(e, myCanvas, Player);
         }
         
