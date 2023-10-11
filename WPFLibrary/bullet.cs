@@ -73,9 +73,21 @@ namespace Model
         /// <summary>
         /// Fait bouger les balles ennemies
         /// </summary>
-        public void enemyBulletMovement()
+        public void enemyBulletMovement(Canvas myCanvas, Rectangle Player)
         {
+            foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
+            {
+                if (x is Rectangle && (string)x.Tag == "enemyBullet")
+                {
+                    Canvas.SetTop(x, Canvas.GetTop(x) + 10);
 
+                    if (Canvas.GetTop(x) > Application.Current.MainWindow.Height)
+                    {
+                        itemsToRemove.Add(x);
+                    }
+                }
+
+            }
         }
 
         /// <summary>
@@ -160,10 +172,12 @@ namespace Model
         /// <summary>
         /// Permet de faire l'update de toutes les balles
         /// </summary>
-        public void update(Canvas myCanvas)
+        public void update(Canvas myCanvas, Rectangle Player)
         {
+            playerBulletCooldown();
+            enemyBulletCooldown(myCanvas, Player);
             playerBulletMovement(myCanvas);
-            enemyBulletMovement();
+            enemyBulletMovement(myCanvas, Player);
         }
     }
 }

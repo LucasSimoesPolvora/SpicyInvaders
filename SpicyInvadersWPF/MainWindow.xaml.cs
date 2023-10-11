@@ -24,42 +24,24 @@ namespace SpicyInvadersWPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Connections des classes
         enemy enemy = new enemy();
         config config = new config();
         bullet bullet = new bullet();
         player player = new player();
         score score = new score();
-        
 
-        // Déclaration des bool qui vont permettre de bouger
-        //bool goLeft;                        // Bool qui permettra d'aller à gauche
-        //bool goRight;                       // Bool qui permettra d'aller à droite
-        //bool goUp;                          // Bool qui permettra d'aller vers le haut
-        //bool goDown;                        // Bool qui permettra d'aller vers le bas
+        // Déclaration des lists
+        List<Rectangle> itemsToRemove = new List<Rectangle>();                  // liste qui ferra disparaître les objets à supprimer
 
-        List<Rectangle> itemsToRemove = new List<Rectangle>();
-        // Déclaration des variables
-        //int enemyCompteur = 0;              // Compteur qui contera combien il y a de vaisseaux par ligne
-        //int enemyRow = 0;                   // Compteur qui dira à quel ligne les ennemis vont spawn
-        //int BulletTimer = 0;                // Int qui permettra que les ennemies auront un cooldown pour tirer
-        //int BulletTimerLimit = 90;          // Timer pour les balles ennemies
-        //int Totalenemies = 0;               // Nombre total d'ennemis présents
-        //int enemySpeed = 4;                 // Vitesse des vaisseaux ennemis
-        //int enemySpeedY = 25;
-        double Boost = 1;
-        bool gameOver = false;              // Bool pour permettre de faire une boucle pour jouer
-        //int PlayerSpeed = 20;               // Vitesse du joueur
-        bool isGoingRight = true;           // Permet de savoir si l'ennemi va vers la droite ou la gauche
-        bool isGoingDown = false;
-        //int NumberBullets = 30;             // Nbr de balles qu'on peut tirer sans cooldowns
-        //double Cooldown = config.CONST_INT_COOLDOWN_TIME;
-        bool isRestarting = false;
-        //int intScore = 0;                   // Compte le score
-        //int ValeurMort = 40;                // Valeur maximale d'une mort
-
+        // Déclaration des variabales
+        double Boost = 1;                   // permet d'accélérer le jeu
+      
         DispatcherTimer gameTimer = new DispatcherTimer();      // pour faire le timer du jeu
-        //ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
 
+        /// <summary>
+        /// Utilise la fenêtre
+        /// </summary>
         public MainWindow()
         {
             // Initialise le programme
@@ -77,6 +59,8 @@ namespace SpicyInvadersWPF
 
             // Permet de tout mettre dans l'écran
             myCanvas.Focus();
+
+
 
             // Crée des ennemies avec un nbr limité
             enemy.display(myCanvas);
@@ -100,31 +84,10 @@ namespace SpicyInvadersWPF
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
             player.update(Player);
-
-            bullet.playerBulletCooldown();
-
-            bullet.playerBulletMovement(myCanvas);
-
             enemy.update(myCanvas);
-            /*
-            // Gain d'une balle après un cooldown
-            Cooldown--;
-            if (Cooldown == 0)
-            {
-                NumberBullets++;
-                Cooldown = config.CONST_INT_COOLDOWN_TIME;
-            }*/
 
+            bullet.update(myCanvas, Player);
 
-            // Création des balles enemies
-            /*BulletTimer = BulletTimer - 3;
-
-            if (BulletTimer < 0)
-            {
-                bullet.EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10, myCanvas);
-
-                BulletTimer = BulletTimerLimit;
-            }*/
 
 
             // Forach qui regroupe : Ennemis / Balles / Hitbox / Mort et suppression des objets
@@ -156,46 +119,6 @@ namespace SpicyInvadersWPF
                 // Permet de choisir les rectangles avec un tag "enemy"
                 if (x is Rectangle && (string)x.Tag == "enemy")
                 {
-                    /*
-                    if (isGoingRight)
-                    {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) + enemy.enemySpeed * Boost);
-                    }
-                    else if (!isGoingRight)
-                    {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) - enemy.enemySpeed * Boost);
-                    }
-
-                    if (isGoingDown)
-                    {
-                        foreach (Rectangle y in myCanvas.Children.OfType<Rectangle>())
-                        {
-                            if (y is Rectangle && (string)y.Tag == "enemy")
-                            {
-                                Canvas.SetTop(y, Canvas.GetTop(y) + enemy.enemySpeedY * Boost);
-                            }
-
-                        }
-                        isGoingDown = false;
-                    }
-
-                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.Width - 100)
-                    {
-                        isGoingDown = true;
-                        isGoingRight = false;
-                    }
-
-                    if (Canvas.GetLeft(x) < 10)
-                    {
-                        isGoingDown = true;
-                        isGoingRight = true;
-                    }
-
-                    if(Canvas.GetTop(x) > Application.Current.MainWindow.Height - 200)
-                    {
-                        showGameOverLose("The invaders invaded earth");
-                    }*/
-
                     // Hitbox de l'ennemi
                     Rect enemyHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
@@ -209,15 +132,10 @@ namespace SpicyInvadersWPF
                 // Permet de choisir tous les rectangles avec un tag "enemyBullet"
                 if (x is Rectangle && (string)x.Tag == "enemyBullet")
                 {
-                    Canvas.SetTop(x, Canvas.GetTop(x) + 10);
-
-                    if (Canvas.GetTop(x) > Height)
-                    {
-                        itemsToRemove.Add(x);
-                    }
-
+                    // Hitbox de la balle ennemie
                     Rect enemyBulletHitBox = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
+                    // Si l'hitbox de la balle ennemie touche le joueur le joueur meurt
                     if (playerHitBox.IntersectsWith(enemyBulletHitBox))
                     {
                         showGameOverLose("You were Killed by the invader's bullet !!");
@@ -251,128 +169,46 @@ namespace SpicyInvadersWPF
             }
         }
 
+        /// <summary>
+        /// Est utilisé quand le joueur clique sur un bouton
+        /// </summary>
+        /// <param name="sender">ne fait rien (a été mis par défaut)</param>
+        /// <param name="e">Stocke la touche cliquée</param>
         private void KeyisDown(object sender, KeyEventArgs e)
         {
             player.movementOn(sender, e, myCanvas);
         }
 
+        /// <summary>
+        /// Est utilisée quand un joueur relâche un bouton
+        /// </summary>
+        /// <param name="sender">ne fait rien (a été mis par défaut)</param>
+        /// <param name="e">Stocke la touche relâchée</param>
         private void KeyisUp(object sender, KeyEventArgs e)
         {
             player.movementOff(sender, e);
             bullet.playerBulletMaker(e, myCanvas, Player);
         }
-        
-        /*private void makeEnnemies(int limit)
-        {
-            int left = 200;
-
-            enemy.Totalenemies = limit;
 
 
-            for (int i = 0; i < limit; i++)
-            {
-                ImageBrush enemySkin = new ImageBrush();
-
-                Rectangle newEnemy = new Rectangle
-                {
-                    Tag = "enemy",
-                    Height = 45,
-                    Width = 45,
-                    Fill = enemySkin
-                };
-
-                
-
-                myCanvas.Children.Add(newEnemy);
-
-                // Faire le retour à la ligne
-                enemy.enemyCompteur++;
-                if (enemy.enemyCompteur - 1 == config.CONST_INT_ENNEMIES)
-                {
-                    enemy.enemyCompteur = 1;
-                    enemy.enemyRow++;
-                }
-
-                Canvas.SetTop(newEnemy, enemy.enemyRow * 60 + 30);
-                left = 85 * enemy.enemyCompteur;
-                Canvas.SetLeft(newEnemy, left);
-
-
-                // Mettre l'image de l'invader
-                switch (enemy.enemyRow)
-                {
-                    case 0:
-                        string basePath = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath = System.IO.Path.Combine(basePath, "Images/invader1.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
-                        break;
-
-                    case 1:
-                        string basePath1 = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath1 = System.IO.Path.Combine(basePath1, "Images/invader2.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath1, UriKind.RelativeOrAbsolute));
-                        break;
-
-                    case 2:
-                        string basePath2 = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath2 = System.IO.Path.Combine(basePath2, "Images/invader3.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath2, UriKind.RelativeOrAbsolute));
-                        break;
-
-                    case 3:
-                        string basePath3 = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath3 = System.IO.Path.Combine(basePath3, "Images/invader4.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath3, UriKind.RelativeOrAbsolute));
-                        break;
-
-                    case 4:
-                        string basePath4 = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath4 = System.IO.Path.Combine(basePath4, "Images/invader5.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath4, UriKind.RelativeOrAbsolute));
-                        break;
-
-                    case 5:
-                        string basePath5 = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath5 = System.IO.Path.Combine(basePath5, "Images/invader6.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath5, UriKind.RelativeOrAbsolute));
-                        break;
-
-                    case 6:
-                        string basePath6 = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath6 = System.IO.Path.Combine(basePath6, "Images/invader7.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath6, UriKind.RelativeOrAbsolute));
-                        break;
-
-                    case 7:
-                        string basePath7 = AppDomain.CurrentDomain.BaseDirectory;
-                        string imagePath7 = System.IO.Path.Combine(basePath7, "Images/invader8.gif");
-
-                        enemySkin.ImageSource = new BitmapImage(new Uri(imagePath7, UriKind.RelativeOrAbsolute));
-                        break;
-                }
-
-            }
-        }*/
-        
-
+        /// <summary>
+        /// a retirer
+        /// </summary>
+        /// <param name="msg"></param>
         private void showGameOverLose(string msg)
         {
-            gameOver = true;
+
             gameTimer.Stop();
 
             //ennemiesLeft.Content += " " + msg + " Press Enter to play again";
         }
 
+        /// <summary>
+        /// a retirer
+        /// </summary>
+        /// <param name="msg"></param>
         private void showGameOverWin(string msg)
         {
-            gameOver = true;
             gameTimer.Stop();
 
         }

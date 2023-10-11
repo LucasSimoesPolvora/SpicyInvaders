@@ -87,6 +87,10 @@ namespace Model
 
         }
 
+        /// <summary>
+        ///  fait le mouvement des ennemis
+        /// </summary>
+        /// <param name="myCanvas"></param>
         public void movement(Canvas myCanvas)
         {
             foreach(Rectangle x in myCanvas.Children.OfType<Rectangle>())
