@@ -86,39 +86,9 @@ namespace Model
             {
                 goDown = false;
             }
-
-
-            /*else if (e.Key == Key.Space)
-            {
-                if (NumberBullets == 0)
-                {
-
-                }
-                else
-                {
-                    Rectangle newBullet = new Rectangle
-                    {
-                        Tag = "bullet",
-                        Height = 20,
-                        Width = 5,
-                        Fill = Brushes.White,
-                        Stroke = Brushes.Red
-                    };
-
-                    Canvas.SetTop(newBullet, Canvas.GetTop(PlayerCaracter) - newBullet.Height);
-                    Canvas.SetLeft(newBullet, Canvas.GetLeft(PlayerCaracter) + PlayerCaracter.Width / 2);
-
-                    myCanvas.Children.Add(newBullet);
-                    bullet.NumberBullets--;
-                }
-            }*/
         }
-        public void Colider()
-        {
-            // Hitbox du joueur
-            Rect playerHitBox = new Rect(Canvas.GetLeft(PlayerCaracter), Canvas.GetTop(PlayerCaracter), PlayerCaracter.Width, PlayerCaracter.Height);
-        }
-        public void Update(Rectangle Player)
+
+        public void MovementAction(Rectangle Player)
         {
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
             {
@@ -139,6 +109,15 @@ namespace Model
             {
                 Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
             }
+        }
+        public void Colider()
+        {
+            // Hitbox du joueur
+            Rect playerHitBox = new Rect(Canvas.GetLeft(PlayerCaracter), Canvas.GetTop(PlayerCaracter), PlayerCaracter.Width, PlayerCaracter.Height);
+        }
+        public void Update(Rectangle Player)
+        {
+            MovementAction(Player);
         }
     }
 }

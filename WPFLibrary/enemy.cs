@@ -29,6 +29,13 @@ namespace Model
         public int enemySpeedY = 25;
         public int limit = CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF;
         public int Totalenemies = CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF;
+        ImageBrush enemySkin = new ImageBrush();
+        Rectangle newEnemy = new Rectangle
+        {
+            Tag = "enemy",
+            Height = 45,
+            Width = 45
+        };
 
         // Crée les ennemis
         public void Create(Canvas myCanvas)
@@ -37,20 +44,41 @@ namespace Model
             {
                 ImageBrush enemySkin = new ImageBrush();
 
-                Rectangle newEnemy = new Rectangle
-                {
-                    Tag = "enemy",
-                    Height = 45,
-                    Width = 45,
-                    Fill = enemySkin
-                };
+                newEnemy.Fill = enemySkin;
                 myCanvas.Children.Add(newEnemy);
             }
         }
 
-        public void Display()
+        public void Display(Canvas myCanvas)
         {
+            int left = 200;
 
+            Totalenemies = limit;
+
+            for (int i = 0; i < limit; i++)
+            {
+
+                // Faire le retour à la ligne
+                enemyCompteur++;
+                if (enemyCompteur - 1 == config.CONST_INT_ENNEMIES)
+                {
+                    enemyCompteur = 1;
+                    enemyRow++;
+                }
+
+                Canvas.SetTop(newEnemy, enemyRow * 60 + 30);
+                left = 85 * enemyCompteur;
+                Canvas.SetLeft(newEnemy, left);
+
+                for(int j = 1; j <= CONST_INT_NBR_ENNMIES_DIFF; j++)
+                {
+                    string basePath = AppDomain.CurrentDomain.BaseDirectory;
+                    string imagePath = System.IO.Path.Combine(basePath, $"Images/invader{j}.gif");
+
+                    enemySkin.ImageSource = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+                }
+
+            }
         }
         /// <summary>
         /// Permet de faire spawn les ennemis dans le programme

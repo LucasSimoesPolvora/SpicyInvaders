@@ -8,7 +8,7 @@ namespace Model
 {
     public class score
     {
-        public int Score = 0;
+        public int ScoreValue = 0;
         public int MaxDeadValue = 40;
 
         public void ScoreIsUp()

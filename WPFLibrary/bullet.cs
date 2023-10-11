@@ -24,8 +24,11 @@ namespace Model
         int BulletTimerLimit = 90;          // Timer pour les balles ennemies
         double Cooldown = config.CONST_INT_COOLDOWN_TIME;
         public int NumberBullets = 30;             // Nbr de balles qu'on peut tirer sans cooldowns
+        List<Rectangle> itemsToRemove = new List<Rectangle>();
+        score score = new score();
+        enemy enemy = new enemy();
 
-        public void EnnemyBulletMaker(double x, double y, Canvas myCanvas)
+        public void ennemyBulletMaker(double x, double y, Canvas myCanvas)
         {
 
             Rectangle enemyBullet = new Rectangle
@@ -44,19 +47,24 @@ namespace Model
             myCanvas.Children.Add(enemyBullet);
         }
 
-        public void EnemyBulletCooldown(Canvas myCanvas, Rectangle Player)
+        public void enemyBulletCooldown(Canvas myCanvas, Rectangle Player)
         {
             BulletTimer = BulletTimer - 3;
 
             if (BulletTimer < 0)
             {
-                EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10, myCanvas);
+                ennemyBulletMaker(Canvas.GetLeft(Player) + 20, 10, myCanvas);
 
                 BulletTimer = BulletTimerLimit;
             }
         }
 
-        public void PlayerBulletCooldown()
+        public void enemyBulletMovement()
+        {
+
+        }
+
+        public void playerBulletCooldown()
         {
             Cooldown--;
             if (Cooldown == 0)
@@ -66,9 +74,9 @@ namespace Model
             }
         }
 
-        /*public void playerBulletMaker(KeyEventArgs e, Canvas myCanvas)
+        public void playerBulletMaker(KeyEventArgs e, Canvas myCanvas, Rectangle Player)
         {
-            else if (e.Key == Key.Space)
+            if (e.Key == Key.Space)
             {
                 if (NumberBullets == 0)
                 {
@@ -96,6 +104,51 @@ namespace Model
             {
 
             }
-        }*/
+        }
+
+        public void playerBulletMovement(Canvas myCanvas)
+        {
+            foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
+            {
+                // Création de la balle 
+                if (x is Rectangle && (string)x.Tag == "bullet")
+                {
+                    // Position et vitesse de la balle
+                    Canvas.SetTop(x, Canvas.GetTop(x) - 20);
+
+                    if (Canvas.GetTop(x) < 10)
+                    {
+                        itemsToRemove.Add(x);
+
+                        if (score.MaxDeadValue >= 10)
+                        {
+                            score.MaxDeadValue--;
+                        }
+                    }
+
+                    // Si ca touche un ennemi l'ennemi disparait
+                    Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
+
+                    foreach (Rectangle y in myCanvas.Children.OfType<Rectangle>())
+                    {
+                        if (y is Rectangle && (string)y.Tag == "enemy")
+                        {
+                            Rect enemyHit = new Rect(Canvas.GetLeft(y), Canvas.GetTop(y), y.Width, y.Height);
+
+                            if (bullet.IntersectsWith(enemyHit))
+                            {
+                                itemsToRemove.Add(x);
+                                itemsToRemove.Add(y);
+                                score.ScoreValue += score.MaxDeadValue;
+
+                                score.MaxDeadValue--;
+
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }
+

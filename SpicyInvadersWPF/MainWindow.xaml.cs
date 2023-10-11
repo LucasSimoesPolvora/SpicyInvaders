@@ -98,26 +98,10 @@ namespace SpicyInvadersWPF
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
             player.Update(Player);
-            /*// Mouvement du joueur
-            if (player.goLeft == true && Canvas.GetLeft(Player) > 10)
-            {
-                Canvas.SetLeft(Player, Canvas.GetLeft(Player) - player.PlayerSpeed);
-            }
 
-            else if (player.goRight == true && Canvas.GetLeft(Player) + 80 < Application.Current.MainWindow.Width)
-            {
-                Canvas.SetLeft(Player, Canvas.GetLeft(Player) + player.PlayerSpeed);
-            }
+            bullet.playerBulletCooldown();
 
-            else if (player.goUp == true && Canvas.GetTop(Player) > 10)
-            {
-                Canvas.SetTop(Player, Canvas.GetTop(Player) - player.PlayerSpeed);
-            }
-
-            else if (player.goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
-            {
-                Canvas.SetTop(Player, Canvas.GetTop(Player) + player.PlayerSpeed);
-            }*/
+            bullet.playerBulletMovement(myCanvas);
             /*
             // Gain d'une balle après un cooldown
             Cooldown--;
@@ -142,6 +126,7 @@ namespace SpicyInvadersWPF
             // Forach qui regroupe : Ennemis / Balles / Hitbox / Mort et suppression des objets
             foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
             {
+                /*
                 // Création de la balle 
                 if (x is Rectangle && (string)x.Tag == "bullet")
                 {
@@ -172,11 +157,11 @@ namespace SpicyInvadersWPF
                                 itemsToRemove.Add(x);
                                 itemsToRemove.Add(y);
                                 enemy.Totalenemies--;
-                                score.Score += score.MaxDeadValue;
+                                score.ScoreValue += score.MaxDeadValue;
                             }
                         }
                     }
-                }
+                }*/
 
                 // Mouvement des vaisseaux ennemis
                 if (x is Rectangle && (string)x.Tag == "enemy")
@@ -275,97 +260,13 @@ namespace SpicyInvadersWPF
         private void KeyisDown(object sender, KeyEventArgs e)
         {
             player.MovementOn(sender, e, myCanvas);
-            /*// permet d'aller à droite ou à gauche selon les touches
-            if (e.Key == Key.Left || e.Key == Key.A)
-            {
-                goLeft = true;
-            }
-            if (e.Key == Key.Right || e.Key == Key.D)
-            {
-                goRight = true;
-            }
-            if (e.Key == Key.Up || e.Key == Key.W)
-            {
-                goUp = true;
-            }
-            if (e.Key == Key.Down || e.Key == Key.S)
-            {
-                goDown = true;
-            }*/
         }
 
         private void KeyisUp(object sender, KeyEventArgs e)
         {
             player.MovementOff(sender, e);
-            /*// permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
-            if (e.Key == Key.Left || e.Key == Key.A)
-            {
-                goLeft = false;
-            }
-            else if (e.Key == Key.Right || e.Key == Key.D)
-            {
-                goRight = false;
-            }
-            else if (e.Key == Key.Up || e.Key == Key.W)
-            {
-                goUp = false;
-            }
-            else if (e.Key == Key.Down || e.Key == Key.S)
-            {
-                goDown = false;
-            }
-
-
-            else if (e.Key == Key.Space)
-            {
-                if (bullet.NumberBullets == 0)
-                {
-
-                }
-                else
-                {
-                    Rectangle newBullet = new Rectangle
-                    {
-                        Tag = "bullet",
-                        Height = 20,
-                        Width = 5,
-                        Fill = Brushes.White,
-                        Stroke = Brushes.Red
-                    };
-
-                    Canvas.SetTop(newBullet, Canvas.GetTop(Player) - newBullet.Height);
-                    Canvas.SetLeft(newBullet, Canvas.GetLeft(Player) + Player.Width / 2);
-
-                    myCanvas.Children.Add(newBullet);
-                    bullet.NumberBullets--;
-                }
-            }
-            else if (e.Key == Key.Escape)
-            {
-
-            }
-            */
+            bullet.playerBulletMaker(e, myCanvas, Player);
         }
-
-        /*private void EnnemyBulletMaker(double x, double y)
-        {
-
-            Rectangle enemyBullet = new Rectangle
-            {
-                Tag = "enemyBullet",
-                Height = 40,
-                Width = 15,
-                Fill = Brushes.Yellow,
-                Stroke = Brushes.Black,
-                StrokeThickness = 5,
-            };
-
-            Canvas.SetTop(enemyBullet, y);
-            Canvas.SetLeft(enemyBullet, x);
-
-            myCanvas.Children.Add(enemyBullet);
-        }*/
-
         
         /*private void makeEnnemies(int limit)
         {
