@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="SpicyInvadersWPF" Height="1000" Width="1500">
     <Canvas Name="myCanvas" Focusable="True" Background="Black" KeyDown="KeyisDown" KeyUp="KeyisUp">
-        <Label Name="Score" Foreground="White" FontSize="16" FontWeight="ExtraBold"></Label>
+        <Label Name="Score" Foreground="White" FontSize="16" FontWeight="ExtraBold">Score : </Label>
         <Label Name="bulletLeft" Foreground="White" FontSize="16" FontWeight="ExtraBold" Canvas.Left="1300">Bullets Left :</Label>
         <Rectangle Name ="Player" Fill="White" Height="65" Width="56" Canvas.Left="722" Canvas.Top="699" HorizontalAlignment="Center" VerticalAlignment="Top"></Rectangle>
     </Canvas>

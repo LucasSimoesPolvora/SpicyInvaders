@@ -91,7 +91,7 @@ namespace Model
         }
 
         /// <summary>
-        ///  fait un cooldown aux balles ennemies
+        ///  fait un cooldown aux balles du joueur
         /// </summary>
         public void playerBulletCooldown()
         {
@@ -161,7 +161,7 @@ namespace Model
 
                         if (score.MaxDeadValue >= 10)
                         {
-                            score.MaxDeadValue--;
+                            score.downADeadValue();
                         }
                     }
                 }

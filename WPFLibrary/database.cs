@@ -12,6 +12,7 @@ namespace Model
         public string[] ConnectionToDB(string sql, string table1, string table2)
         {
             string[] str = new string[10];
+            int i = 0;
             List<string> list = new List<string>();
             try
             {
@@ -22,13 +23,13 @@ namespace Model
                 //sql = "SELECT * FROM t_arme";
                 MySqlCommand cmd = new MySqlCommand(sql, con);
                 MySqlDataReader reader = cmd.ExecuteReader();
-                for (int i = 0; i < reader.FieldCount; i++)
+
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        str[i] = reader[table1] + " " + reader[table2];
-                    }
+                    str[i] = reader[table1] + "" + reader[table2];
+                    i++;
                 }
+
             }
             catch (MySqlException ex)
             {
@@ -44,7 +45,7 @@ namespace Model
 
         public string[] ShowHighscore()
         {
-            string cmdSql = "SELECT jouPseudo, jouNombrePoints FROM t_joueur";
+            string cmdSql = "SELECT jouPseudo, jouNombrePoints FROM t_joueur order by jouNombrePoints DESC limit 10";
             string table1 = "jouPseudo";
             string table2 = "jouNombrePoints";
             string[] Answer = new string[10];

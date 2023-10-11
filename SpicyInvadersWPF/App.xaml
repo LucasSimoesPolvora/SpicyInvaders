@@ -2,8 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SpicyInvadersWPF"
-             StartupUri="MainWindow.xaml">
+             StartupUri="Highscore.xaml">
     <Application.Resources>
-         
+        <Style x:Key="CustomFont">
+            <Setter Property="TextElement.FontFamily"
+                Value="pack://application:,,,/fonts/SOVNGARDE.TTF#Sovngarde"/>
+        </Style>
     </Application.Resources>
 </Application>

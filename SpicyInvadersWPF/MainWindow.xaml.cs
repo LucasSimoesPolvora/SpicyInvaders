@@ -80,7 +80,7 @@ namespace SpicyInvadersWPF
             Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
 
             // Labels de la page XAML
-            //Score.Content = "Score : " + intScore;
+            Score.Content = score.writeScore();
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
             player.update(Player);
@@ -88,9 +88,7 @@ namespace SpicyInvadersWPF
 
             bullet.update(myCanvas, Player);
 
-
-
-            // Forach qui regroupe : Ennemis / Balles / Hitbox / Mort et suppression des objets
+            // Foreach qui regroupe : Ennemis / Balles / Hitbox / Mort et suppression des objets
             foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
             {
                 // Permet de choisir les rectangles avec un tag "bullet" 
@@ -110,7 +108,8 @@ namespace SpicyInvadersWPF
                                 itemsToRemove.Add(x);
                                 itemsToRemove.Add(y);
                                 enemy.Totalenemies--;
-                                score.ScoreValue += score.MaxDeadValue;
+                                score.update();
+                                
                             }
                         }
                     }
