@@ -95,11 +95,11 @@ namespace Model
                 {
                     if (isGoingRight)
                     {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed * Boost);
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed);
                     }
                     else if (!isGoingRight)
                     {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) - enemySpeed * Boost);
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) - enemySpeed);
                     }
 
                     if (isGoingDown)
@@ -108,7 +108,7 @@ namespace Model
                         {
                             if (y is Rectangle && (string)y.Tag == "enemy")
                             {
-                                Canvas.SetTop(y, Canvas.GetTop(y) + enemySpeedY * Boost);
+                                Canvas.SetTop(y, Canvas.GetTop(y) + enemySpeedY );
                             }
 
                         }
@@ -139,9 +139,9 @@ namespace Model
         /// <summary>
         /// Fait tous les updates des ennemis
         /// </summary>
-        public void update()
+        public void update(Canvas myCanvas)
         {
-
+            movement(myCanvas);
         }
     }
 }

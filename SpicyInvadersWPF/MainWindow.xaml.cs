@@ -104,6 +104,8 @@ namespace SpicyInvadersWPF
             bullet.playerBulletCooldown();
 
             bullet.playerBulletMovement(myCanvas);
+
+            enemy.update(myCanvas);
             /*
             // Gain d'une balle après un cooldown
             Cooldown--;
