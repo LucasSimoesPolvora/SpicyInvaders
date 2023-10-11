@@ -20,10 +20,10 @@ namespace Model
 {
     public class player
     {
-        bool goLeft;
-        bool goRight;
-        bool goUp;
-        bool goDown;
+        public bool goLeft;
+        public bool goRight;
+        public bool goUp;
+        public bool goDown;
         public int PlayerSpeed = 20;               // Vitesse du joueur
         static ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
         Rectangle PlayerCaracter = new Rectangle
@@ -33,10 +33,10 @@ namespace Model
             Width = 65,
             Fill = playerSkin
         };
-        public void Display(Rectangle Playercaracter) 
+        public void Display(Rectangle Playercaracter)
         {
             ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
-            
+
             // Vaisseau du joueur
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             string imagePath = System.IO.Path.Combine(basePath, "Images/player.png");
@@ -44,30 +44,6 @@ namespace Model
             playerSkin.ImageSource = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
 
             Playercaracter.Fill = playerSkin;
-        }
-
-        public void MovementAction()
-        {
-            // Mouvement du joueur
-            if (goLeft == true && Canvas.GetLeft(PlayerCaracter) > 10)
-            {
-                Canvas.SetLeft(PlayerCaracter, Canvas.GetLeft(PlayerCaracter) - PlayerSpeed);
-            }
-
-            else if (goRight == true && Canvas.GetLeft(PlayerCaracter) + 80 < Application.Current.MainWindow.Width)
-            {
-                Canvas.SetLeft(PlayerCaracter, Canvas.GetLeft(PlayerCaracter) + PlayerSpeed);
-            }
-
-            else if (goUp == true && Canvas.GetTop(PlayerCaracter) > 10)
-            {
-                Canvas.SetTop(PlayerCaracter, Canvas.GetTop(PlayerCaracter) - PlayerSpeed);
-            }
-
-            else if (goDown == true && Canvas.GetTop(PlayerCaracter) + 110 < Application.Current.MainWindow.Height)
-            {
-                Canvas.SetTop(PlayerCaracter, Canvas.GetTop(PlayerCaracter) + PlayerSpeed);
-            }
         }
 
         public void MovementOn(object sender, KeyEventArgs e, Canvas myCanvas)
@@ -91,7 +67,7 @@ namespace Model
             }
         }
 
-        public void MovementOff(object sender, KeyEventArgs e, Canvas myCanvas)
+        public void MovementOff(object sender, KeyEventArgs e)
         {
             // permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
             if (e.Key == Key.Left || e.Key == Key.A)
@@ -142,9 +118,27 @@ namespace Model
             // Hitbox du joueur
             Rect playerHitBox = new Rect(Canvas.GetLeft(PlayerCaracter), Canvas.GetTop(PlayerCaracter), PlayerCaracter.Width, PlayerCaracter.Height);
         }
-        public void Update()
+        public void Update(Rectangle Player)
         {
+            if (goLeft == true && Canvas.GetLeft(Player) > 10)
+            {
+                Canvas.SetLeft(Player, Canvas.GetLeft(Player) - PlayerSpeed);
+            }
 
+            else if (goRight == true && Canvas.GetLeft(Player) + 80 < Application.Current.MainWindow.Width)
+            {
+                Canvas.SetLeft(Player, Canvas.GetLeft(Player) + PlayerSpeed);
+            }
+
+            else if (goUp == true && Canvas.GetTop(Player) > 10)
+            {
+                Canvas.SetTop(Player, Canvas.GetTop(Player) - PlayerSpeed);
+            }
+
+            else if (goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
+            {
+                Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
+            }
         }
     }
 }

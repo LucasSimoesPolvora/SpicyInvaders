@@ -44,19 +44,19 @@ namespace Model
             myCanvas.Children.Add(enemyBullet);
         }
 
-        /*public void EnemyBulletCooldown(Canvas myCanvas)
+        public void EnemyBulletCooldown(Canvas myCanvas, Rectangle Player)
         {
             BulletTimer = BulletTimer - 3;
 
             if (BulletTimer < 0)
             {
-                bullet.EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10, myCanvas);
+                EnnemyBulletMaker(Canvas.GetLeft(Player) + 20, 10, myCanvas);
 
                 BulletTimer = BulletTimerLimit;
             }
-        }*/
+        }
 
-        public void PlayerBulletCooldown(Canvas myCanvas)
+        public void PlayerBulletCooldown()
         {
             Cooldown--;
             if (Cooldown == 0)
@@ -65,5 +65,37 @@ namespace Model
                 Cooldown = config.CONST_INT_COOLDOWN_TIME;
             }
         }
+
+        /*public void playerBulletMaker(KeyEventArgs e, Canvas myCanvas)
+        {
+            else if (e.Key == Key.Space)
+            {
+                if (NumberBullets == 0)
+                {
+
+                }
+                else
+                {
+                    Rectangle newBullet = new Rectangle
+                    {
+                        Tag = "bullet",
+                        Height = 20,
+                        Width = 5,
+                        Fill = Brushes.White,
+                        Stroke = Brushes.Red
+                    };
+
+                    Canvas.SetTop(newBullet, Canvas.GetTop(Player) - newBullet.Height);
+                    Canvas.SetLeft(newBullet, Canvas.GetLeft(Player) + Player.Width / 2);
+
+                    myCanvas.Children.Add(newBullet);
+                    NumberBullets--;
+                }
+            }
+            else if (e.Key == Key.Escape)
+            {
+
+            }
+        }*/
     }
 }

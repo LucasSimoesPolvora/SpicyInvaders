@@ -51,3 +51,4 @@ C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\runtimes\win-x64\native\krbcc64.dll
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\bin\Debug\net6.0-windows\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\Highscore.g.cs
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\Highscore.baml

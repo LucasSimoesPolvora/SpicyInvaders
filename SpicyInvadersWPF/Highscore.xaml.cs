@@ -43,7 +43,7 @@ namespace SpicyInvadersWPF
         private void KeyisDown(object sender, KeyEventArgs e)
         {
         }
-        private void KeyisDown(object sender, KeyEventArgs e)
+        private void KeyisUp(object sender, KeyEventArgs e)
         {
         }
     }

@@ -97,26 +97,26 @@ namespace SpicyInvadersWPF
             //Score.Content = "Score : " + intScore;
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
 
-            player.MovementAction();
+            player.Update(Player);
             /*// Mouvement du joueur
-            if (goLeft == true && Canvas.GetLeft(Player) > 10)
+            if (player.goLeft == true && Canvas.GetLeft(Player) > 10)
             {
-                Canvas.SetLeft(Player, Canvas.GetLeft(Player) - PlayerSpeed);
+                Canvas.SetLeft(Player, Canvas.GetLeft(Player) - player.PlayerSpeed);
             }
 
-            else if (goRight == true && Canvas.GetLeft(Player) + 80 < Application.Current.MainWindow.Width)
+            else if (player.goRight == true && Canvas.GetLeft(Player) + 80 < Application.Current.MainWindow.Width)
             {
-                Canvas.SetLeft(Player, Canvas.GetLeft(Player) + PlayerSpeed);
+                Canvas.SetLeft(Player, Canvas.GetLeft(Player) + player.PlayerSpeed);
             }
 
-            else if (goUp == true && Canvas.GetTop(Player) > 10)
+            else if (player.goUp == true && Canvas.GetTop(Player) > 10)
             {
-                Canvas.SetTop(Player, Canvas.GetTop(Player) - PlayerSpeed);
+                Canvas.SetTop(Player, Canvas.GetTop(Player) - player.PlayerSpeed);
             }
 
-            else if (goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
+            else if (player.goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
             {
-                Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
+                Canvas.SetTop(Player, Canvas.GetTop(Player) + player.PlayerSpeed);
             }*/
             /*
             // Gain d'une balle après un cooldown
@@ -296,7 +296,7 @@ namespace SpicyInvadersWPF
 
         private void KeyisUp(object sender, KeyEventArgs e)
         {
-            player.MovementOff(sender, e, myCanvas);
+            player.MovementOff(sender, e);
             /*// permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
             if (e.Key == Key.Left || e.Key == Key.A)
             {
