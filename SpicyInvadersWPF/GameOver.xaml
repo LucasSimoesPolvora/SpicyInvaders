@@ -6,7 +6,13 @@
         xmlns:local="clr-namespace:SpicyInvadersWPF"
         mc:Ignorable="d"
         Title="GameOver" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Canvas Name="gameOverCanvas" Background="Black">
+        <Button Name="Back" Content="Button" Canvas.Left="41" Canvas.Top="30"/>
+        <Label Name="title" Foreground="White" FontSize="50" Canvas.Left="271" Canvas.Top="10">Game Over</Label>
+        <Label Name="Score" FontSize="20" Foreground="White" Canvas.Left="213" Canvas.Top="121" HorizontalAlignment="Center" VerticalAlignment="Center">Score :</Label>
+        <Label Name ="ennemiRestant" FontSize="20" Foreground="White" Canvas.Left="95" Canvas.Top="180" HorizontalAlignment="Left" VerticalAlignment="Center">-   Ennemis Restants :</Label>
+        <Label Name ="niveauAtteint" FontSize="20" Foreground="White" Canvas.Left="186" Canvas.Top="244" HorizontalAlignment="Left" VerticalAlignment="Top">*   Niveau :</Label>
+        <Label Name ="trait" FontSize="20" Foreground="White" Canvas.Left="158" Canvas.Top="281">-----------------------------------------------</Label>
+        <Label Name="scoreTotal" FontSize="20" Foreground="White" Canvas.Left="166" Canvas.Top="318" >Score total :</Label>
+    </Canvas>
 </Window>

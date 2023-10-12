@@ -20,23 +20,21 @@ namespace Model
 {
     public class enemy
     {
-        public const int CONST_INT_ENNEMIES = 8;                   // Nbr d'ennemis par ligne
-        public const int CONST_INT_NBR_ENNMIES_DIFF = 8;           // nbr d'ennemis différents
-
-        public int enemyRow = 0;
-        public int enemyCompteur = 0;
-        public int enemySpeed = 4;                 // Vitesse des vaisseaux ennemis
-        public int enemySpeedY = 25;
-        public int limit = CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF;
-        public int Totalenemies = CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF;
-        public int ennemiesKilled = 0;
-        public double boost = 1;
-        public bool isGoingRight = true;
-        public bool isGoingLeft = false;
-        public bool isGoingDown = false;
+        config config = new config();                               // Appelle la classe config
+        score score = new score();                                  // Appelle la classe score
 
 
-        score score = new score();
+        public int enemyRow = 0;                                    // int qui va compter a quel ligne les ennemis spawn
+        public int enemyCompteur = 0;                               // Compteur qui sers a display les ennemis
+        public int enemySpeed = 8;                                  // Vitesse des vaisseaux ennemis
+        public int enemySpeedY = 25;                                // Vitesse de la vitesse varticale des vaisseaux ennemis
+        public int limit = config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF;                   // Limite du nbr de vaisseaux qui peuvent spawn
+        public int Totalenemies = config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF;            // Mëme chose que le limit mais celui ci va être diminuer a chaque fois qu'on tue les ennemis
+        public int ennemiesKilled = 0;                              // Compte le nbr d'ennemis tué
+        public double boost = 1;                                    // boost pour les ennemis quand ils sont peu
+        public bool isGoingRight = true;                            // bool qui dira si l'ennemi va vers la droite
+        public bool isGoingLeft = false;                            // Bool qui dira si l'ennemi va vers la gauche
+        public bool isGoingDown = false;                            // Bool qui dira si l'ennemi descend
 
 
         private ImageBrush enemySkin = new ImageBrush();
@@ -69,12 +67,12 @@ namespace Model
 
                 // Faire le retour à la ligne
                 enemyCompteur++;
-                if (enemyCompteur - 1 == CONST_INT_ENNEMIES)
+                if (enemyCompteur - 1 == config.CONST_INT_ENNEMIES)
                 {
                     enemyCompteur = 1;
                     enemyRow++;
 
-                    if(enemyRow == CONST_INT_NBR_ENNMIES_DIFF - 1)
+                    if(enemyRow == config.CONST_INT_NBR_ENNMIES_DIFF - 1)
                     {
                         return;
                     }
@@ -124,13 +122,13 @@ namespace Model
                         isGoingDown = false;
                     }
 
-                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.Width - 100)
+                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.Width - 10)
                     {
                         isGoingDown = true;
                         isGoingRight = false;
                     }
 
-                    if (Canvas.GetLeft(x) < 100)
+                    if (Canvas.GetLeft(x) < 10)
                     {
                         isGoingDown = true;
                         isGoingRight = true;
