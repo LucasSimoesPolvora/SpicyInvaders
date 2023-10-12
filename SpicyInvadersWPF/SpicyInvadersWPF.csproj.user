@@ -7,6 +7,9 @@
     </ApplicationDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="GameOver.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Highscore.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -15,6 +18,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Update="GameOver.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Highscore.xaml">
       <SubType>Designer</SubType>
     </Page>

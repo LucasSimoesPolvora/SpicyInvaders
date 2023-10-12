@@ -29,9 +29,14 @@ namespace Model
         public int enemySpeedY = 25;
         public int limit = CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF;
         public int Totalenemies = CONST_INT_ENNEMIES * CONST_INT_NBR_ENNMIES_DIFF;
+        public int ennemiesKilled = 0;
+        public double boost = 1;
         public bool isGoingRight = true;
         public bool isGoingLeft = false;
         public bool isGoingDown = false;
+
+
+        score score = new score();
 
 
         private ImageBrush enemySkin = new ImageBrush();
@@ -99,11 +104,11 @@ namespace Model
                 {
                     if (isGoingRight)
                     {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed);
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed * boost);
                     }
                     else if (!isGoingRight)
                     {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) - enemySpeed);
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) - enemySpeed * boost);
                     }
 
                     if (isGoingDown)
@@ -112,7 +117,7 @@ namespace Model
                         {
                             if (y is Rectangle && (string)y.Tag == "enemy")
                             {
-                                Canvas.SetTop(y, Canvas.GetTop(y) + enemySpeedY );
+                                Canvas.SetTop(y, Canvas.GetTop(y) + enemySpeedY * boost);
                             }
 
                         }
@@ -125,7 +130,7 @@ namespace Model
                         isGoingRight = false;
                     }
 
-                    if (Canvas.GetLeft(x) < 10)
+                    if (Canvas.GetLeft(x) < 100)
                     {
                         isGoingDown = true;
                         isGoingRight = true;
@@ -139,6 +144,20 @@ namespace Model
             }
             
         }
+
+        public void moreBoost()
+        {
+            if(ennemiesKilled % 10 == 0)
+            {
+                boost += 0.1;
+            }
+        }
+
+        public void nbrOfennemiesKilled()
+        {
+            
+        }
+
 
         /// <summary>
         /// Fait tous les updates des ennemis

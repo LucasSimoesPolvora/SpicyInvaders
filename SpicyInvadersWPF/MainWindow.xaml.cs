@@ -47,8 +47,11 @@ namespace SpicyInvadersWPF
             // Initialise le programme
             InitializeComponent();
 
-            // Fait le height de mainwindow
-            Application.Current.MainWindow.Height = System.Windows.SystemParameters.PrimaryScreenHeight - 200;
+            // Paramètres de l'écran
+            Left = config.CONST_INT_LEFT_OF_THE_SCREEN;
+            Top = config.CONST_INT_TOP_OF_THE_SCREEN;
+            Width = config.WidthOfTheScreen;
+            Height = config.HeightOfTheScreen;
 
             // Timer du jeu
             gameTimer.Tick += GameLoop;
@@ -57,10 +60,8 @@ namespace SpicyInvadersWPF
             // Démarre le timer
             gameTimer.Start();
 
-            // Permet de tout mettre dans l'écran
+            // Permet de faire un focus sur les canvas
             myCanvas.Focus();
-
-
 
             // Crée des ennemies avec un nbr limité
             enemy.display(myCanvas);
@@ -97,6 +98,7 @@ namespace SpicyInvadersWPF
                     // Si ca touche un ennemi l'ennemi disparait
                     Rect bullet = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);
 
+                    // Si la balle touche un ennemi l'ennemi disparait
                     foreach (Rectangle y in myCanvas.Children.OfType<Rectangle>())
                     {
                         if (y is Rectangle && (string)y.Tag == "enemy")
@@ -148,7 +150,7 @@ namespace SpicyInvadersWPF
                 myCanvas.Children.Remove(i);
             }
 
-            // Vitesse des ennemies selon le nombre d'ennemis restants
+            /*// Vitesse des ennemies selon le nombre d'ennemis restants
             if (enemy.Totalenemies < (enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 2)
             {
                 Boost = 1.5;
@@ -160,7 +162,9 @@ namespace SpicyInvadersWPF
             else if (enemy.Totalenemies < ((enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 8) * 7)
             {
                 Boost = 2;
-            }
+            }*/
+
+            score.moreBoost();
 
             if (enemy.Totalenemies < 1)
             {

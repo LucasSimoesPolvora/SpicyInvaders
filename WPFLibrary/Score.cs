@@ -10,6 +10,7 @@ namespace Model
     {
         public int ScoreValue = 0;
         public int MaxDeadValue = 40;
+        public double boost = 1;
 
         /// <summary>
         /// Permet de update le score
@@ -20,21 +21,40 @@ namespace Model
             ScoreValue += MaxDeadValue;
         }
 
+        /// <summary>
+        /// Ecris le score correspondant
+        /// </summary>
+        /// <returns>Le string qui contient le score</returns>
         public string writeScore()
         {
-            return $" {ScoreValue}";
+            return $"Score : {ScoreValue}";
         }
 
+        /// <summary>
+        /// Enelve de la valeur aux ennemis lorsqu'on rate une balle
+        /// </summary>
         public void downADeadValue()
         {
-            if(MaxDeadValue <= 10)
-            {
-
-            }
-            else
+            if(MaxDeadValue >= 10)
             {
                 MaxDeadValue--;
             }
+            else
+            {
+                
+            }
+        }
+
+
+        /// <summary>
+        /// Rajoute du boost aux ennemis après chaque score
+        /// </summary>
+        public void moreBoost()
+        {
+            
+            
+                boost += 0.1;
+            
         }
     }
 }

@@ -158,11 +158,7 @@ namespace Model
                     if (Canvas.GetTop(x) < 10)
                     {
                         itemsToRemove.Add(x);
-
-                        if (score.MaxDeadValue >= 10)
-                        {
-                            score.downADeadValue();
-                        }
+                        score.downADeadValue();
                     }
                 }
             }
