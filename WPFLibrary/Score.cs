@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+
     public class score
     {
         public int ScoreValue = 0;
@@ -18,7 +19,7 @@ namespace Model
         /// <returns></returns>
         public void update()
         {
-            ScoreValue += MaxDeadValue;
+             ScoreValue += MaxDeadValue;
         }
 
         /// <summary>
@@ -37,24 +38,20 @@ namespace Model
         {
             if(MaxDeadValue >= 10)
             {
-                MaxDeadValue--;
+                MaxDeadValue -= 1;
             }
             else
             {
-                
+
             }
         }
-
 
         /// <summary>
         /// Rajoute du boost aux ennemis après chaque score
         /// </summary>
         public void moreBoost()
         {
-            
-            
-                boost += 0.1;
-            
+                boost += 0.1;   
         }
     }
 }

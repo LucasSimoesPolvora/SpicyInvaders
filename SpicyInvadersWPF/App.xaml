@@ -5,8 +5,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <Style x:Key="CustomFont">
-            <Setter Property="TextElement.FontFamily"
-                Value="pack://application:,,,/fonts/SOVNGARDE.TTF#Sovngarde"/>
+            <Setter Property= "TextElement.FontFamily" Value="/Fonts/#Minecraft"></Setter>
         </Style>
     </Application.Resources>
 </Application>

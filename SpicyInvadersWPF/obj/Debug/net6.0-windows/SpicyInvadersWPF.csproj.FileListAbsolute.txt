@@ -107,3 +107,5 @@ C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Deb
 C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\SpicyInvadersWPF.pdb
 C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\SpicyInvadersWPF.genruntimeconfig.cache
 C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\ref\SpicyInvadersWPF.dll
+C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\GameOver.g.cs
+C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\GameOver.baml

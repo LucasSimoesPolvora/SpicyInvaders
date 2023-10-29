@@ -150,20 +150,6 @@ namespace SpicyInvadersWPF
                 myCanvas.Children.Remove(i);
             }
 
-            /*// Vitesse des ennemies selon le nombre d'ennemis restants
-            if (enemy.Totalenemies < (enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 2)
-            {
-                Boost = 1.5;
-            }
-            else if (enemy.Totalenemies < ((enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 4) * 3)
-            {
-                Boost = 2;
-            }
-            else if (enemy.Totalenemies < ((enemy.CONST_INT_ENNEMIES * enemy.CONST_INT_NBR_ENNMIES_DIFF) / 8) * 7)
-            {
-                Boost = 2;
-            }*/
-
             score.moreBoost();
 
             if (enemy.Totalenemies < 1)
@@ -193,7 +179,6 @@ namespace SpicyInvadersWPF
             bullet.playerBulletMaker(e, myCanvas, Player);
         }
 
-
         /// <summary>
         /// a retirer
         /// </summary>
@@ -202,6 +187,9 @@ namespace SpicyInvadersWPF
         {
 
             gameTimer.Stop();
+
+            // To Do
+            // Afficher gameOver
 
             //ennemiesLeft.Content += " " + msg + " Press Enter to play again";
         }
@@ -213,7 +201,8 @@ namespace SpicyInvadersWPF
         private void showGameOverWin(string msg)
         {
             gameTimer.Stop();
-
+            // To do 
+            // Faire le recommencement du jeu
         }
 
     }

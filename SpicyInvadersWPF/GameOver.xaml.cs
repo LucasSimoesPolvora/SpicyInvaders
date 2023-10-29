@@ -20,11 +20,38 @@ namespace SpicyInvadersWPF
     /// </summary>
     public partial class GameOver : Window
     {
-        public GameOver()
+        config config = new config();
+
+        int valueNiveau;
+        int valueScoreTotal;
+
+        public GameOver(int score, int ennemisRestants, int niveau)
         {
             InitializeComponent();
 
+            Left = config.CONST_INT_LEFT_OF_THE_SCREEN;
+            Top = config.CONST_INT_TOP_OF_THE_SCREEN;
+            Width = config.WidthOfTheScreen;
+            Height = config.HeightOfTheScreen;
 
+            valueNiveau = (score - ennemisRestants) * (niveau / 10);
+            valueScoreTotal = score - ennemisRestants + valueNiveau;
+
+
+            scoreJoueur.Content = score;
+            ennemisRestantsJoueur.Content = ennemisRestants;
+            niveauJoueur.Content = valueNiveau;
+
+            scoreTotalJoueur.Content = valueScoreTotal;
+
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            /*
+            Menu mainWindow = new Menu();
+            Visibility = Visibility.Hidden;
+            mainWindow.Visibility = Visibility.Visible;*/
         }
     }
 }

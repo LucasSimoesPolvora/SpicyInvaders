@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\App.xaml
-31763154452
+4783662346
 
-5933894093
+6-1379273241
 2031407486637
-Highscore.xaml;MainWindow.xaml;Menu.xaml;
+GameOver.xaml;Highscore.xaml;MainWindow.xaml;Menu.xaml;
 
 False
 
