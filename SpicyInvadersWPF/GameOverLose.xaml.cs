@@ -21,7 +21,9 @@ namespace SpicyInvadersWPF
     public partial class GameOverLose : Window
     {
         config config = new config();
-        public GameOverLose()
+        score score = new score();
+        enemy enemy = new enemy();
+        public GameOverLose(int ennemisRestants, int finalScore, int level)
         {
             InitializeComponent();
 
@@ -59,6 +61,11 @@ namespace SpicyInvadersWPF
 
             Canvas.SetLeft(scoreTotalJoueur, config.WidthOfTheScreen / 2);
             Canvas.SetTop(scoreTotalJoueur, 700);
+
+            scoreJoueur.Content = finalScore;
+            ennemisRestantsJoueur.Content = ennemisRestants * 10;
+            niveauJoueur.Content = (finalScore - ennemisRestants * 10) * (level / 10);
+            scoreTotalJoueur.Content = (finalScore - ennemisRestants * 10) + (finalScore + ennemisRestants * 10) * (level / 10);
         }
 
         private void btnReturnLose_Click(object sender, RoutedEventArgs e)

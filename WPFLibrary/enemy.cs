@@ -72,7 +72,7 @@ namespace Model
                     enemyCompteur = 1;
                     enemyRow++;
 
-                    if(enemyRow == config.CONST_INT_NBR_ENNMIES_DIFF - 1)
+                    if(enemyRow == config.CONST_INT_NBR_ENNMIES_DIFF)
                     {
                         return;
                     }

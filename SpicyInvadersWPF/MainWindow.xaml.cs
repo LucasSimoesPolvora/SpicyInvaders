@@ -82,10 +82,6 @@ namespace SpicyInvadersWPF
         /// <param name="e">Enregistre la touche qui a été touchée</param>
         private void GameLoop(object sender, EventArgs e)
         {
-            // Dit que le joueur est en vie
-            stillAlive = true;
-
-            
 
             //Hitbox du joueur
             Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
@@ -120,8 +116,8 @@ namespace SpicyInvadersWPF
                                 itemsToRemove.Add(x);
                                 itemsToRemove.Add(y);
                                 enemy.Totalenemies--;
+                                ennemisRestants--;
                                 score.update();
-                                
                             }
                         }
                     }
@@ -136,7 +132,10 @@ namespace SpicyInvadersWPF
                     // Si l'hitbox de l'ennemi touche l0hitbox du joueur le joueur meurt
                     if (playerHitBox.IntersectsWith(enemyHitBox))
                     {
-                        showGameOverLose("You were killed by the invaders !!");
+                        GameOverLose windowShow = new GameOverLose(ennemisRestants, score.ScoreValue, niveau);
+                        this.Close();
+                        windowShow.Show();
+                        gameTimer.Stop();
                     }
                 }
 
@@ -149,7 +148,10 @@ namespace SpicyInvadersWPF
                     // Si l'hitbox de la balle ennemie touche le joueur le joueur meurt
                     if (playerHitBox.IntersectsWith(enemyBulletHitBox))
                     {
-                        showGameOverLose("You were Killed by the invader's bullet !!");
+                        GameOverLose windowShow = new GameOverLose(ennemisRestants, score.ScoreValue, niveau);
+                        this.Close();
+                        windowShow.Show();
+                        gameTimer.Stop();
                     }
                 }
             }
@@ -164,7 +166,10 @@ namespace SpicyInvadersWPF
 
             if (enemy.Totalenemies < 1)
             {
-                gameOverWin();
+                GameOverWin windowShow = new GameOverWin(ennemisRestants, score.ScoreValue, niveau);
+                this.Close();
+                windowShow.Show();
+                gameTimer.Stop();
             }
         }
 
@@ -188,29 +193,5 @@ namespace SpicyInvadersWPF
             player.movementOff(sender, e);
             bullet.playerBulletMaker(e, myCanvas, Player);
         }
-
-        /// <summary>
-        /// a retirer
-        /// </summary>
-        /// <param name="msg"></param>
-        private void showGameOverLose(string msg)
-        {
-            // To Do
-            /*
-            GameOver window = new GameOver(score.ScoreValue, enemy.Totalenemies, niveau );
-            Visibility = Visibility.Hidden;
-            window.Visibility = Visibility.Visible;*/
-        }
-
-        /// <summary>
-        /// a retirer
-        /// </summary>
-        /// <param name="msg"></param>
-        private void gameOverWin()
-        {
-            //recommence le jeu
-            
-        }
-
     }
 }

@@ -10,6 +10,6 @@
         <Label Name="Score" Foreground="White" FontSize="20" Style="{StaticResource CustomFont}" Canvas.Left="18" Canvas.Top="11" >Score :</Label>
         <Label Name="bulletLeft" Foreground="White" FontSize="20" Canvas.Left="1294" Style="{StaticResource CustomFont}" Canvas.Top="11" >Bullets Left :</Label>
         <Label Name="Level" Foreground="White" FontSize="30" Style="{StaticResource CustomFont}" Canvas.Left="697" Canvas.Top="14" HorizontalAlignment="Left" VerticalAlignment="Top">Level :</Label>
-        <Rectangle Name ="Player" Fill="White" Height="65" Width="56" Canvas.Left="722" Canvas.Top="551" HorizontalAlignment="Center" VerticalAlignment="Top"></Rectangle>
+        <Rectangle Name ="Player" Fill="White" Height="65" Width="56" Canvas.Left="722" Canvas.Top="761" HorizontalAlignment="Center" VerticalAlignment="Top"></Rectangle>
     </Canvas>
 </Window>
