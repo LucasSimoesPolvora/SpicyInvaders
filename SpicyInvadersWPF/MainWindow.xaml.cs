@@ -36,6 +36,9 @@ namespace SpicyInvadersWPF
 
         // Déclaration des variabales
         double Boost = 1;                   // permet d'accélérer le jeu
+        bool stillAlive = false;
+        public int niveau = 1;
+        public int ennemisRestants;
       
         DispatcherTimer gameTimer = new DispatcherTimer();      // pour faire le timer du jeu
 
@@ -63,11 +66,13 @@ namespace SpicyInvadersWPF
             // Permet de faire un focus sur les canvas
             myCanvas.Focus();
 
-            // Crée des ennemies avec un nbr limité
+            // Permet de faire les ennemis
             enemy.display(myCanvas);
 
-            // Affiche le joueur sur la fenêtre
+            // Permet de faire le joueur
             player.display(Player);
+
+            ennemisRestants = enemy.Totalenemies;
         }
 
         /// <summary>
@@ -77,6 +82,11 @@ namespace SpicyInvadersWPF
         /// <param name="e">Enregistre la touche qui a été touchée</param>
         private void GameLoop(object sender, EventArgs e)
         {
+            // Dit que le joueur est en vie
+            stillAlive = true;
+
+            
+
             //Hitbox du joueur
             Rect playerHitBox = new Rect(Canvas.GetLeft(Player), Canvas.GetTop(Player), Player.Width, Player.Height);
 
@@ -154,7 +164,7 @@ namespace SpicyInvadersWPF
 
             if (enemy.Totalenemies < 1)
             {
-                showGameOverLose("You win, you saved the world !!");
+                gameOverWin();
             }
         }
 
@@ -185,24 +195,21 @@ namespace SpicyInvadersWPF
         /// <param name="msg"></param>
         private void showGameOverLose(string msg)
         {
-
-            gameTimer.Stop();
-
             // To Do
-            // Afficher gameOver
-
-            //ennemiesLeft.Content += " " + msg + " Press Enter to play again";
+            /*
+            GameOver window = new GameOver(score.ScoreValue, enemy.Totalenemies, niveau );
+            Visibility = Visibility.Hidden;
+            window.Visibility = Visibility.Visible;*/
         }
 
         /// <summary>
         /// a retirer
         /// </summary>
         /// <param name="msg"></param>
-        private void showGameOverWin(string msg)
+        private void gameOverWin()
         {
-            gameTimer.Stop();
-            // To do 
-            // Faire le recommencement du jeu
+            //recommence le jeu
+            
         }
 
     }

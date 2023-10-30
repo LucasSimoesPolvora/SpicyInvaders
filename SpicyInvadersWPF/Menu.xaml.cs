@@ -23,13 +23,6 @@ namespace SpicyInvadersWPF
         public Window1()
         {
             InitializeComponent();
-
-            TestDB();
-        }
-
-        private void TestDB()
-        {
-            
         }
     }
 }

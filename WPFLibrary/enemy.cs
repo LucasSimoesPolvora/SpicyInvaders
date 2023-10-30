@@ -51,9 +51,6 @@ namespace Model
 
             Totalenemies = limit;
 
-             int setTop = enemyRow * 60 + 60;
-
-
             for (int i = 0; i < limit; i++)
             {
                 ImageBrush enemySkin = new ImageBrush();
@@ -81,7 +78,7 @@ namespace Model
                     }
                 }
 
-                Canvas.SetTop(newEnemy, setTop);
+                Canvas.SetTop(newEnemy, enemyRow * 60 + 60);
                 left = 85 * enemyCompteur;
                 Canvas.SetLeft(newEnemy, left);
 

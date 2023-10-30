@@ -33,6 +33,11 @@ namespace Model
             Width = 65,
             Fill = playerSkin
         };
+
+        /// <summary>
+        /// Affiche le joueur
+        /// </summary>
+        /// <param name="Playercaracter"></param>
         public void display(Rectangle Playercaracter)
         {
             ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
@@ -46,6 +51,12 @@ namespace Model
             Playercaracter.Fill = playerSkin;
         }
 
+        /// <summary>
+        /// est utilisé quand la touche est appuyée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <param name="myCanvas"></param>
         public void movementOn(object sender, KeyEventArgs e, Canvas myCanvas)
         {
             // permet d'aller à droite ou à gauche selon les touches
@@ -67,6 +78,11 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Est utilisée lorsque la touche est retirée
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         public void movementOff(object sender, KeyEventArgs e)
         {
             // permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
@@ -88,6 +104,10 @@ namespace Model
             }
         }
 
+        /// <summary>
+        /// Action du joueur
+        /// </summary>
+        /// <param name="Player"></param>
         public void movementAction(Rectangle Player)
         {
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
@@ -111,6 +131,10 @@ namespace Model
             }
         }
      
+        /// <summary>
+        /// Fait un update du joueur
+        /// </summary>
+        /// <param name="Player"></param>
         public void update(Rectangle Player)
         {
             movementAction(Player);

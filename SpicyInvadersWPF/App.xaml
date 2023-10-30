@@ -2,10 +2,12 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SpicyInvadersWPF"
-             StartupUri="MainWindow.xaml">
+             StartupUri="GameOverLose.xaml">
     <Application.Resources>
         <Style x:Key="CustomFont">
             <Setter Property= "TextElement.FontFamily" Value="/Fonts/#Minecraft"></Setter>
+            <Setter Property="TextElement.Foreground" Value="White"></Setter>
+            <Setter Property="TextElement.FontSize" Value="20"></Setter>
         </Style>
     </Application.Resources>
 </Application>

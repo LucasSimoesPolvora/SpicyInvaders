@@ -31,6 +31,11 @@ namespace Model
             return $"Score : {ScoreValue}";
         }
 
+        public void resetScore()
+        {
+            ScoreValue = 0;
+        }
+
         /// <summary>
         /// Enelve de la valeur aux ennemis lorsqu'on rate une balle
         /// </summary>
