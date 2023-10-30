@@ -9,7 +9,7 @@ namespace Model
 {
     public class database
     {
-        public string[] ConnectionToDB(string sql, string table1, string table2)
+        public string[] ConnectionToDB(string sql, string table1)
         {
             string[] str = new string[10];
             int i = 0;
@@ -26,7 +26,7 @@ namespace Model
 
                 while (reader.Read())
                 {
-                    str[i] = reader[table1] + "" + reader[table2];
+                    str[i] = reader[table1] + "";
                     i++;
                 }
 
@@ -43,13 +43,21 @@ namespace Model
 
         }
 
-        public string[] ShowHighscore()
+        public string[] ShowHighscoreNames()
         {
-            string cmdSql = "SELECT jouPseudo, jouNombrePoints FROM t_joueur order by jouNombrePoints DESC limit 10";
+            string cmdSql = "SELECT jouPseudo FROM t_joueur order by jouNombrePoints DESC limit 10";
             string table1 = "jouPseudo";
-            string table2 = "jouNombrePoints";
             string[] Answer = new string[10];
-            Answer = ConnectionToDB(cmdSql, table1, table2);
+            Answer = ConnectionToDB(cmdSql, table1);
+            return Answer;
+        }
+
+        public string[] showHighscoreScore()
+        {
+            string cmdSql = "SELECT jouNombrePoints FROM t_joueur order by jouNombrePoints DESC limit 10";
+            string table1 = "jouNombrePoints";
+            string[] Answer = new string[10];
+            Answer = ConnectionToDB(cmdSql, table1);
             return Answer;
         }
     }

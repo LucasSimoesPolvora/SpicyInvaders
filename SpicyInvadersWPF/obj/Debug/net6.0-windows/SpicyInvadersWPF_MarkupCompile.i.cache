@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\
 SpicyInvadersWPF
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\polvo\OneDrive\Documentos\GitHub\SpicyInvaders\SpicyInvadersWPF\App.xaml
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\App.xaml
 5-141069992
 
 9-1597737004
-2031407486637
+203-1429554300
 GameOverLose.xaml;GameOverWin.xaml;Highscore.xaml;MainWindow.xaml;Menu.xaml;
 
 True

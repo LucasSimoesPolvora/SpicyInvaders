@@ -28,5 +28,6 @@ namespace Model
         public int ennemySpeed = 40;                                // Vitesse de l'ennemi
         public const int CONST_INT_ENNEMIES = 8;                   // Nbr d'ennemis par ligne
         public const int CONST_INT_NBR_ENNMIES_DIFF = 8;           // nbr d'ennemis différents
+
     }
 }

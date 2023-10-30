@@ -23,6 +23,11 @@ namespace SpicyInvadersWPF
         public Window1()
         {
             InitializeComponent();
+
+            config config = new config();
+
+            Left = config.CONST_INT_LEFT_OF_THE_SCREEN;
+
         }
     }
 }

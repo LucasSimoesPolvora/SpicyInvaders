@@ -7,16 +7,28 @@
         mc:Ignorable="d"
         Title="Highscore" Height="1000" Width="1500">
     <Canvas Name="myCanvas" Focusable="True" Background="Black" KeyDown="KeyisDown" KeyUp="KeyisUp">
-        <Label Name="Title" Foreground="white" FontSize="64" HorizontalAlignment="Left" Canvas.Left="603" VerticalAlignment="Top" Canvas.Top="52" Style="{StaticResource CustomFont}" FontFamily="Minecraft">Highscore</Label>
-        <Label Name="Placement1" Foreground="Yellow" FontSize="40" Canvas.Left="72" Canvas.Top="224" FontFamily="Cordia new"></Label>
-        <Label Name="Placement2" Foreground="White" FontSize="40" Canvas.Left="72" Canvas.Top="343"></Label>
-        <Label Name="Placement3" Foreground="White" FontSize="40" Canvas.Left="72" Canvas.Top="460" HorizontalAlignment="Center" VerticalAlignment="Top"></Label>
-        <Label Name="Placement4" Foreground="White" FontSize="40" Canvas.Left="72" Canvas.Top="583"></Label>
-        <Label Name="Placement5" Foreground="White" FontSize="40" Canvas.Left="72" Canvas.Top="708"></Label>
-        <Label Name="Placement6" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="224" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
-        <Label Name="Placement7" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="343"></Label>
-        <Label Name="Placement8" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="460"></Label>
-        <Label Name="Placement9" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="583"></Label>
-        <Label Name="Placement10" Foreground="White" FontSize="40" Canvas.Left="855" Canvas.Top="708" HorizontalAlignment="Left" VerticalAlignment="Center"></Label>
+        <Label Name="Title" Foreground="white" FontSize="64" HorizontalAlignment="Left" Canvas.Left="603" VerticalAlignment="Top" Canvas.Top="52" Style="{StaticResource CustomFont}">Highscore</Label>
+        <Label Name="Placement1" Foreground="Yellow" FontSize="40" Canvas.Left="72" Canvas.Top="224">1. Nom</Label>
+        <Label Name="Placement2" Foreground="Silver" FontSize="40" Canvas.Left="72" Canvas.Top="343">2. Nom</Label>
+        <Label Name="Placement3" Foreground="BurlyWood" FontSize="40" Canvas.Left="72" Canvas.Top="460">3. Nom</Label>
+        <Label Name="Placement4" Foreground="White" FontSize="40" Canvas.Left="72" Canvas.Top="583">4. Nom</Label>
+        <Label Name="Placement5" Foreground="White" FontSize="40" Canvas.Left="72" Canvas.Top="708">5. Nom</Label>
+        <Label Name="Placement6" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="224">6.Nom</Label>
+        <Label Name="Placement7" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="343">7. Nom</Label>
+        <Label Name="Placement8" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="460">8. Nom</Label>
+        <Label Name="Placement9" Foreground="White" FontSize="40" Canvas.Left="866" Canvas.Top="583">9. Nom</Label>
+        <Label Name="Placement10" Foreground="White" FontSize="40" Canvas.Left="855" Canvas.Top="708">10. Nom</Label>
+
+        <Label Name="Label1" Foreground="Yellow" FontSize="40" Canvas.Left="577" Canvas.Top="224">Score</Label>
+        <Label Name="Label2" Foreground="White" FontSize="40" Canvas.Left="577" Canvas.Top="343">Score</Label>
+        <Label Name="Label3" Foreground="White" FontSize="40" Canvas.Left="577" Canvas.Top="460" HorizontalAlignment="Center" VerticalAlignment="Top">Score</Label>
+        <Label Name="Label4" Foreground="White" FontSize="40" Canvas.Left="577" Canvas.Top="583">Score</Label>
+        <Label Name="Label5" Foreground="White" FontSize="40" Canvas.Left="577" Canvas.Top="708">Score</Label>
+        <Label Name="Label6" Foreground="White" FontSize="40" Canvas.Left="1250" Canvas.Top="224">Score</Label>
+        <Label Name="Label7" Foreground="White" FontSize="40" Canvas.Left="1250" Canvas.Top="343">Score</Label>
+        <Label Name="Label8" Foreground="White" FontSize="40" Canvas.Left="1250" Canvas.Top="460">Score</Label>
+        <Label Name="Label9" Foreground="White" FontSize="40" Canvas.Left="1250" Canvas.Top="583">Score</Label>
+        <Label Name="Label10" Foreground="White" FontSize="40" Canvas.Left="1250" Canvas.Top="708">Score</Label>
+
     </Canvas>
 </Window>
