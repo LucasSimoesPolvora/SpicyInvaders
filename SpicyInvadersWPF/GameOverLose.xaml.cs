@@ -32,6 +32,7 @@ namespace SpicyInvadersWPF
             Width = config.WidthOfTheScreen;
             Height = config.HeightOfTheScreen;
 
+            // fait la disposition de tous les labels pour que ce soit un minimum responsive
             Canvas.SetLeft(title, config.WidthOfTheScreen / 2 - 270);
             Canvas.SetTop(title, 20);
 
@@ -62,6 +63,7 @@ namespace SpicyInvadersWPF
             Canvas.SetLeft(scoreTotalJoueur, config.WidthOfTheScreen / 2);
             Canvas.SetTop(scoreTotalJoueur, 700);
 
+            // Calculs pour connaître le score
             scoreJoueur.Content = finalScore;
             ennemisRestantsJoueur.Content = ennemisRestants * 10;
             niveauJoueur.Content = (finalScore - ennemisRestants * 10) * (level / 10);
@@ -70,11 +72,9 @@ namespace SpicyInvadersWPF
 
         private void btnReturnLose_Click(object sender, RoutedEventArgs e)
         {
-            
-            MainWindow windowPlay = new MainWindow();
-            this.Visibility = Visibility.Hidden;
-            windowPlay.Show();
-            
+            MettrePseudo window = new MettrePseudo();
+            this.Close();
+            window.Show();
         }
     }
 }

@@ -72,9 +72,7 @@ namespace SpicyInvadersWPF
 
         private void btnContinueWin_Click(object sender, RoutedEventArgs e)
         {
-            Menu window = new Menu();
-            this.Close();
-            window.Visibility = Visibility.Visible;
+            
         }
     }
 }

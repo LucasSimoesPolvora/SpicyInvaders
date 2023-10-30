@@ -116,3 +116,5 @@ C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\App.baml
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\GameOverLose.baml
 C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\GameOverWin.baml
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\MettrePseudo.g.cs
+C:\Users\pd57mgs\Documents\GitHub\SpicyInvaders\SpicyInvadersWPF\obj\Debug\net6.0-windows\MettrePseudo.baml

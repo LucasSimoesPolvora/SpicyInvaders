@@ -38,9 +38,38 @@ namespace Model
             return str;
         }
 
-        public void WriteScore()
+        public string WriteScore(string player, string score)
         {
+            string connstring = "server=localhost; uid=root; pwd=4$a6mJ#ieQ95&MK9LF$R; database=db_space_invaders;";
+            MySqlConnection con = new MySqlConnection(connstring);
 
+            try
+            {
+                con.Open();
+
+                // Créez la commande SQL d'insertion pour ajouter un nouveau score au joueur.
+                string sql = "INSERT INTO db_space_invaders.t_joueur (jouPseudo, jouNombrePoints) VALUES (@jouPseudo, @jouNombrePoints)";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+
+                // Ajoutez les paramètres pour le nom du joueur et le score.
+                cmd.Parameters.AddWithValue("@jouPseudo", player);
+                cmd.Parameters.AddWithValue("@jouNombrePoints", score);
+
+
+
+                // Exécutez la commande d'insertion.
+                cmd.ExecuteNonQuery();
+
+                // Affichez un message de succès en utilisant MessageBox.Show.
+                return "Score enregistré !";
+
+
+            }
+            catch (MySqlException ex)
+            {
+                // Erreur base de donnée non connectée
+                return "Erreur de base de données : " + ex.Message;
+            }
         }
 
         public string[] ShowHighscoreNames()
