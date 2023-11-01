@@ -35,8 +35,9 @@ namespace Model
         public bool isGoingRight = true;                            // bool qui dira si l'ennemi va vers la droite
         public bool isGoingLeft = false;                            // Bool qui dira si l'ennemi va vers la gauche
         public bool isGoingDown = false;                            // Bool qui dira si l'ennemi descend
+        public bool gameOver = true;                                       // Si les ennemis touchent le bas de l'écran le joueur perd
 
-        private ImageBrush enemySkin = new ImageBrush();
+        private ImageBrush enemySkin = new ImageBrush();            // Image de l'ennemi
 
 
         /// <summary>
@@ -45,14 +46,19 @@ namespace Model
         /// <param name="myCanvas">Rassemble tous les ennemis</param>
         public void display(Canvas myCanvas)
         {
+            // A partir d'où les ennemis vont apparaître
             int left = 200;
 
+            // Reprend la valeur
             Totalenemies = limit;
 
+            // Fait apparaître les ennemis avec une quantité limitée
             for (int i = 0; i < limit; i++)
             {
+                // Image de l'ennemi
                 ImageBrush enemySkin = new ImageBrush();
 
+                // Propriétés de l'ennemi
                 Rectangle newEnemy = new Rectangle
                 {
                     Tag = "enemy",
@@ -61,6 +67,7 @@ namespace Model
                     Fill = enemySkin
                 };
 
+                // Ajout des ennemis aux canvas afin qu'ils apparaissent
                 myCanvas.Children.Add(newEnemy);
 
                 // Faire le retour à la ligne
@@ -76,10 +83,12 @@ namespace Model
                     }
                 }
 
+                // Endroit où ils vont apparaître
                 Canvas.SetTop(newEnemy, enemyRow * 70 + 60);
                 left = 80 * enemyCompteur;
                 Canvas.SetLeft(newEnemy, left);
 
+                // Mettre l'image des ennemis
                 string basePath = AppDomain.CurrentDomain.BaseDirectory;
                 string imagePath = System.IO.Path.Combine(basePath, $"Images/invader{enemyRow + 1}.gif");
 
@@ -94,14 +103,17 @@ namespace Model
         /// <param name="myCanvas"></param>
         public void movement(Canvas myCanvas)
         {
+            // Foreach et if qui sélectionne tous les ennemis
             foreach(Rectangle x in myCanvas.Children.OfType<Rectangle>())
             {
                 if(x is Rectangle && (string)x.Tag == "enemy")
                 {
+                    // If pour la direction et mouvement dans les conditions
                     if (isGoingRight)
                     {
                         Canvas.SetLeft(x, Canvas.GetLeft(x) + enemySpeed * boost);
                     }
+
                     else if (!isGoingRight)
                     {
                         Canvas.SetLeft(x, Canvas.GetLeft(x) - enemySpeed * boost);
@@ -134,18 +146,20 @@ namespace Model
 
                     if (Canvas.GetTop(x) > config.HeightOfTheScreen - 200)
                     {
-                        
+                        gameOver = false;
                     }
                 }
             }
             
         }
 
+        /// <summary>
+        /// Fait avancer les ennemis plus rapidement
+        /// </summary>
         public void moreBoost()
         {
             boost += 0.1;
         }
-
 
         /// <summary>
         /// Fait tous les updates des ennemis

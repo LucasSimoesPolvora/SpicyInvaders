@@ -37,7 +37,6 @@ namespace SpicyInvadersWPF
         // Déclaration des variabales
         public int ennemisRestants;
         public double scoreTot;
-        bool isRestart = true;
 
         DispatcherTimer gameTimer = new DispatcherTimer();      // pour faire le timer du jeu
 
@@ -164,12 +163,20 @@ namespace SpicyInvadersWPF
                 myCanvas.Children.Remove(i);
             }
 
-            score.moreBoost();
-
+            // S'il n'y a plus d'ennemis le joueur gagne
             if (enemy.Totalenemies < 1)
             {
                 GameOverWin windowShow = new GameOverWin(ennemisRestants, score.ScoreValue);
                 this.Visibility = Visibility.Hidden;
+                windowShow.Show();
+                gameTimer.Stop();
+            }
+
+            // joueur perd car les ennemis sont en bas de l'écran
+            if (enemy.gameOver)
+            {
+                GameOverLose windowShow = new GameOverLose(ennemisRestants, score.ScoreValue);
+                this.Close();
                 windowShow.Show();
                 gameTimer.Stop();
             }

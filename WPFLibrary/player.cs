@@ -20,12 +20,14 @@ namespace Model
 {
     public class player
     {
-        public bool goLeft;
-        public bool goRight;
-        public bool goUp;
-        public bool goDown;
+        public bool goLeft;                         // bool pour savoir si le joueur va à gauche
+        public bool goRight;                        // Bool pour savoir si le joueur va à droite
+        public bool goUp;                           // Bool pour savoir si le joueur monte
+        public bool goDown;                         // Bool pour savoir si le joueur descend
         public int PlayerSpeed = 20;               // Vitesse du joueur
         static ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
+
+        // Propriétés du joueur
         Rectangle PlayerCaracter = new Rectangle
         {
             Tag = "Player",
@@ -46,8 +48,10 @@ namespace Model
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
             string imagePath = System.IO.Path.Combine(basePath, "Images/player.png");
 
+            // Chemin relatif
             playerSkin.ImageSource = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
 
+            // Met l'image du joueur
             Playercaracter.Fill = playerSkin;
         }
 
@@ -59,7 +63,7 @@ namespace Model
         /// <param name="myCanvas"></param>
         public void movementOn(object sender, KeyEventArgs e, Canvas myCanvas)
         {
-            // permet d'aller à droite ou à gauche selon les touches
+            // permet d'aller à droite ou à gauche ou en haut ou en bas selon les touches touchées par le joueur
             if (e.Key == Key.Left || e.Key == Key.A)
             {
                 goLeft = true;
@@ -85,7 +89,7 @@ namespace Model
         /// <param name="e"></param>
         public void movementOff(object sender, KeyEventArgs e)
         {
-            // permet d'arrêter le vaisseau d'aller à droite ou à gauche quand on lève la touche
+            // permet d'arrêter le vaisseau d'aller à droite ou à gauche ou en haut ou en bas quand on lève la touche
             if (e.Key == Key.Left || e.Key == Key.A)
             {
                 goLeft = false;
@@ -110,6 +114,7 @@ namespace Model
         /// <param name="Player"></param>
         public void movementAction(Rectangle Player)
         {
+            // Mouvement du joueur selon la direction du joueur 
             if (goLeft == true && Canvas.GetLeft(Player) > 10)
             {
                 Canvas.SetLeft(Player, Canvas.GetLeft(Player) - PlayerSpeed);

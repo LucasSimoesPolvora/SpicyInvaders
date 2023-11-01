@@ -63,8 +63,14 @@ namespace SpicyInvadersWPF
             scoreTotalJoueur.Content = (finalScore - ennemisRestants * 10);
         }
 
+        /// <summary>
+        /// Action lorsque le joueur appuie sur le bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReturnLose_Click(object sender, RoutedEventArgs e)
         {
+            // Va à la page pour mettre le pseudo
             MettrePseudo window = new MettrePseudo();
             this.Close();
             window.Show();

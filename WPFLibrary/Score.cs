@@ -9,12 +9,11 @@ namespace Model
 
     public class score
     {
-        public int ScoreValue = 0;
-        public int MaxDeadValue = 40;
-        public double boost = 1;
+        public int ScoreValue = 0;          // Score total du jeu
+        public int MaxDeadValue = 40;       // Combien vaut un kill     
 
         /// <summary>
-        /// Permet de update le score
+        /// Permet de update le score a chaque fois que le joueur tue quelqu'un
         /// </summary>
         /// <returns></returns>
         public void update()
@@ -31,11 +30,6 @@ namespace Model
             return $"Score : {ScoreValue}";
         }
 
-        public void resetScore()
-        {
-            ScoreValue = 0;
-        }
-
         /// <summary>
         /// Enelve de la valeur aux ennemis lorsqu'on rate une balle
         /// </summary>
@@ -49,14 +43,6 @@ namespace Model
             {
 
             }
-        }
-
-        /// <summary>
-        /// Rajoute du boost aux ennemis après chaque score
-        /// </summary>
-        public void moreBoost()
-        {
-                boost += 0.1;   
         }
     }
 }

@@ -9,21 +9,36 @@ namespace Model
 {
     public class database
     {
+        /// <summary>
+        /// Faires toutes les requêtes SELECT du programme
+        /// </summary>
+        /// <param name="sql">Commande SQL</param>
+        /// <param name="table1">Table choisie</param>
+        /// <returns></returns>
         public string[] ConnectionToDBReading(string sql, string table1)
         {
+            // String qui va recevoir toutes les 
             string[] str = new string[10];
             string[] exception = new string[1];
             int i = 0;
 
             try
             {
+                // Infos de la base de donnée
                 string connstring = "server=localhost; uid=root; pwd=root; database=db_space_invaders; port=6033;";
                 MySqlConnection con = new MySqlConnection();
                 con.ConnectionString = connstring;
+
+                // Ouverture de la connexion
                 con.Open();
+
+                // faire la commande
                 MySqlCommand cmd = new MySqlCommand(sql, con);
+
+                // Lire la commande
                 MySqlDataReader reader = cmd.ExecuteReader();
 
+                // Noter les résultats dans le tableau
                 while (reader.Read())
                 {
                     str[i] = reader[table1] + "";
@@ -31,6 +46,7 @@ namespace Model
                 }
 
             }
+            // Réception d'une erreur
             catch (MySqlException ex)
             {
                 exception[0] = ex.Message;
@@ -39,23 +55,36 @@ namespace Model
             return str;
         }
 
+        /// <summary>
+        /// Essayer de faire une connection à la base de donnée pour voir si ca marche
+        /// </summary>
+        /// <returns>réponse si ca marche</returns>
         public string tryConnection()
         {
+            // Commande SQL
             string sql = "SELECT * FROM t_joueur";
             try
             {
+                // Connexion à la db
                 string connstring = "server=localhost; uid=root; pwd=root; database=db_space_invaders; port=6033;";
                 MySqlConnection con = new MySqlConnection();
                 con.ConnectionString = connstring;
+                // Ouverture de la connexion
                 con.Open();
+
+                // Faire la requête
                 MySqlCommand cmd = new MySqlCommand(sql, con);
+
+                // Lire la requête
                 MySqlDataReader reader = cmd.ExecuteReader();
 
+                // Réussi
                 while (reader.Read())
                 {
                     return "connection successful";
                 }
             }
+            // S'il y a une erreur
             catch (MySqlException ex)
             {
                 return ex + "";
@@ -84,19 +113,20 @@ namespace Model
                 string sql = "INSERT INTO db_space_invaders.t_joueur (jouPseudo, jouNombrePoints) VALUES (@jouPseudo, @jouNombrePoints)";
                 MySqlCommand cmd = new MySqlCommand(sql, con);
 
-                // Ajoutez les paramètres pour le nom du joueur et le score.
+                // Ajoute les valeurs
                 cmd.Parameters.AddWithValue("@jouPseudo", player);
                 cmd.Parameters.AddWithValue("@jouNombrePoints", score);
 
-                // Exécutez la commande d'insertion.
+                // Exécute la commande
                 cmd.ExecuteNonQuery();
 
-                // Affichez un message de succès en utilisant MessageBox.Show.
+                // Affiche un popup pour dire que la requête a fonctionné
                 return "Score ajouté avec succès !";
             }
+            // S'il y a une erreur
             catch (MySqlException ex)
             {
-                // Gérez les erreurs de connexion à la base de données en affichant une boîte de dialogue.
+                // Affiche un popup si il y a une erreur
                 return "Erreur de base de données : " + ex.Message;
             }
         }
@@ -106,19 +136,33 @@ namespace Model
         /// <returns></returns>
         public string[] ShowHighscoreNames()
         {
+            // Requête SQL
             string cmdSql = "SELECT jouPseudo FROM t_joueur order by jouNombrePoints DESC limit 10";
             string table1 = "jouPseudo";
+
+            // tableau qui va recevoir les réponses
             string[] Answer = new string[10];
             Answer = ConnectionToDBReading(cmdSql, table1);
+
+            // Retourne la réponse
             return Answer;
         }
 
+        /// <summary>
+        /// Sert à montrer les scores du highscore
+        /// </summary>
+        /// <returns></returns>
         public string[] showHighscoreScore()
         {
+            // Requête SQL
             string cmdSql = "SELECT jouNombrePoints FROM t_joueur order by jouNombrePoints DESC limit 10";
             string table1 = "jouNombrePoints";
+
+            // tableau qui va recevoir les réponses
             string[] Answer = new string[10];
             Answer = ConnectionToDBReading(cmdSql, table1);
+
+            // Retourne la réponse
             return Answer;
         }
     }

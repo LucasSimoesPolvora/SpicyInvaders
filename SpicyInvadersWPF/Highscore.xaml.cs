@@ -27,20 +27,25 @@ namespace SpicyInvadersWPF
         {
             InitializeComponent();
 
+            // Paramètres de la fenêtre
             Left = config.CONST_INT_LEFT_OF_THE_SCREEN;
             Top = config.CONST_INT_TOP_OF_THE_SCREEN;
             Width = config.WidthOfTheScreen;
             Height = config.HeightOfTheScreen;
 
+            // Va sur la méthode pour montrer le highscore
             showHighscore();
         }
 
         private void showHighscore()
         {
+            // Tableaux qui vont récupérer les données de la db
             string[] tab_highscoreName = new string[10];
             string[] tab_highscoreScore = new string[10];
             tab_highscoreName = db.ShowHighscoreNames();
             tab_highscoreScore = db.showHighscoreScore();
+
+            // Écriture sur la page XAML
 
             Placement1.Content = "1. " + tab_highscoreName[0];
 
@@ -83,8 +88,14 @@ namespace SpicyInvadersWPF
             Label10.Content = tab_highscoreScore[9];
         }
 
+        /// <summary>
+        /// Retourne au menu lorsqu'on clicke dessus
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void return_Click(object sender, RoutedEventArgs e)
         {
+            // Retourne au menu et ferme la page du HIGHSCORE
             Menu window = new Menu();
             this.Close();
             window.Show();

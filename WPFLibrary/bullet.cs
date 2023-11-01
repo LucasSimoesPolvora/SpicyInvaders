@@ -22,12 +22,12 @@ namespace Model
     {
         int BulletTimer = 0;                // Int qui permettra que les ennemies auront un cooldown pour tirer
         int BulletTimerLimit = 90;          // Timer pour les balles ennemies
-        double Cooldown = config.CONST_INT_COOLDOWN_TIME;
+        double Cooldown = config.CONST_INT_COOLDOWN_TIME;       // Cooldown du joueur
         public int NumberBullets = 30;             // Nbr de balles qu'on peut tirer sans cooldowns
-        List<Rectangle> itemsToRemove = new List<Rectangle>();
-        score score = new score();
-        enemy enemy = new enemy();
-        config config = new config();
+        List<Rectangle> itemsToRemove = new List<Rectangle>();      // List qui sert a retirer les rectangles inutiles
+        score score = new score();              // Avoir accès au score
+        enemy enemy = new enemy();              // Avoir accès aux ennemis
+        config config = new config();           // Avoir accès aux configurations du programme
 
         /// <summary>
         /// Fait apparaître les balles ennemis sur la fenêtre
@@ -37,7 +37,7 @@ namespace Model
         /// <param name="myCanvas">Permet d'avoir accès aux canvas crée sur le fichier xaml pour crée des balles qui peuvent tuer le joueur</param>
         public void ennemyBulletMaker(double x, double y, Canvas myCanvas)
         {
-
+            // Paramètres d'une balle ennemie
             Rectangle enemyBullet = new Rectangle
             {
                 Tag = "enemyBullet",
@@ -48,9 +48,11 @@ namespace Model
                 StrokeThickness = 5,
             };
 
+            // position de la balle
             Canvas.SetTop(enemyBullet, y);
             Canvas.SetLeft(enemyBullet, x);
 
+            // Ajout de la balle aux canvas pour qu'il apparaisse
             myCanvas.Children.Add(enemyBullet);
         }
 
@@ -61,8 +63,10 @@ namespace Model
         /// <param name="Player"></param>
         public void enemyBulletCooldown(Canvas myCanvas, Rectangle Player)
         {
-            BulletTimer = BulletTimer - 3;
+            // Temps de cooldown
+            BulletTimer = BulletTimer - config.timeCooldownEnemyBullet;
 
+            // Si il est temps de faire une balle on rentre sur cette condition
             if (BulletTimer < 0)
             {
                 ennemyBulletMaker(Canvas.GetLeft(Player) + 20, 10, myCanvas);
@@ -76,12 +80,15 @@ namespace Model
         /// </summary>
         public void enemyBulletMovement(Canvas myCanvas, Rectangle Player)
         {
+            // Prendre chaque balle ennemie
             foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
             {
                 if (x is Rectangle && (string)x.Tag == "enemyBullet")
                 {
+                    // Mouvement de la balle
                     Canvas.SetTop(x, Canvas.GetTop(x) + 10);
 
+                    // Si elle sort de l'écran elle disparait
                     if (Canvas.GetTop(x) > config.HeightOfTheScreen)
                     {
                         itemsToRemove.Add(x);
@@ -92,11 +99,14 @@ namespace Model
         }
 
         /// <summary>
-        ///  fait un cooldown aux balles du joueur
+        /// Fait un cooldown aux balles max du joueur
         /// </summary>
         public void playerBulletCooldown()
         {
+            // Cooldown
             Cooldown--;
+
+            // Lorsque le joueur gagne une balle on rentre sur la condition
             if (Cooldown == 0)
             {
                 NumberBullets++;
@@ -112,14 +122,18 @@ namespace Model
         /// <param name="Player">Rectangle qui reprèsente le joueur</param>
         public void playerBulletMaker(KeyEventArgs e, Canvas myCanvas, Rectangle Player)
         {
+            // Si le joueur a cliqué sur espace
             if (e.Key == Key.Space)
             {
+                // S'l n'a plus de balles il ne tire rien
                 if (NumberBullets == 0)
                 {
 
                 }
+                // S'il a des balles il tire une balle
                 else
                 {
+                    // Paramètres d'une balle
                     Rectangle newBullet = new Rectangle
                     {
                         Tag = "bullet",
@@ -129,16 +143,16 @@ namespace Model
                         Stroke = Brushes.Red
                     };
 
+                    // Position de la balle
                     Canvas.SetTop(newBullet, Canvas.GetTop(Player) - newBullet.Height);
                     Canvas.SetLeft(newBullet, Canvas.GetLeft(Player) + Player.Width / 2);
 
+                    // Rajouter les balles du joueur dans les canvas pour qu'elle appraisse
                     myCanvas.Children.Add(newBullet);
+
+                    // On retire une balle au joueur
                     NumberBullets--;
                 }
-            }
-            else if (e.Key == Key.Escape)
-            {
-
             }
         }
 
@@ -148,14 +162,15 @@ namespace Model
         /// <param name="myCanvas">Permet d'avoir accès aux Canvas du fichier xaml pour faire bouger les balles existantes</param>
         public void playerBulletMovement(Canvas myCanvas)
         {
+            // Foreach et if pour séléctionner toutes les balles du joueur
             foreach (Rectangle x in myCanvas.Children.OfType<Rectangle>())
             {
-                // Création de la balle 
                 if (x is Rectangle && (string)x.Tag == "bullet")
                 {
                     // Position et vitesse de la balle
                     Canvas.SetTop(x, Canvas.GetTop(x) - 20);
 
+                    // Disparition de la balle si elle touche le sommet de l'écran
                     if (Canvas.GetTop(x) < 10)
                     {
                         itemsToRemove.Add(x);
@@ -164,7 +179,6 @@ namespace Model
                 }
             }
         }
-
 
         /// <summary>
         /// Permet de faire l'update de toutes les balles

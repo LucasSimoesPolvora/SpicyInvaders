@@ -20,16 +20,16 @@ namespace SpicyInvadersWPF
     /// </summary>
     public partial class GameOverWin : Window
     {
-
         config config = new config();
         score score = new score();
         enemy enemy = new enemy();
 
-        double scoreTot;
+        double scoreTot;            //Variable pour connaître le score final
         public GameOverWin(int ennemisRestants, int finalScore)
         {
             InitializeComponent();
 
+            // Config de l'écran
             Left = config.CONST_INT_LEFT_OF_THE_SCREEN;
             Top = config.CONST_INT_TOP_OF_THE_SCREEN;
             Width = config.WidthOfTheScreen;
@@ -60,6 +60,7 @@ namespace SpicyInvadersWPF
             Canvas.SetLeft(scoreTotalJoueur, config.WidthOfTheScreen / 2);
             Canvas.SetTop(scoreTotalJoueur, 700);
 
+            // Calculs pour le score
             scoreTot = (finalScore - ennemisRestants * 10);
 
             scoreJoueur.Content = finalScore;
@@ -69,15 +70,27 @@ namespace SpicyInvadersWPF
             
         }
 
+        /// <summary>
+        /// Action lorsqu'on clicke sur le bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnContinueWin_Click(object sender, RoutedEventArgs e)
         {
+            // Va au jeu
             MainWindow window = new MainWindow();
             this.Close();
             window.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Action lorsqu'on clicke sur le bouton
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnReturnLose_Click(object sender, RoutedEventArgs e)
         {
+            // Va sur la page pour mettre son pseudo
             MettrePseudo window = new MettrePseudo();
             this.Close();
             window.Show();
