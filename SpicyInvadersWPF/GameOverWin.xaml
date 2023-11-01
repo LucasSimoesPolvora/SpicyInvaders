@@ -20,5 +20,6 @@
         <Label Name="ennemisRestantsJoueur" Foreground="White" FontSize="50" Canvas.Left="406" Canvas.Top="180" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" VerticalAlignment="Top">EnnemisRestantsJoueur</Label>
         <Label Name="niveauJoueur" Foreground="White" FontSize="50" Canvas.Left="406" Canvas.Top="240" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" VerticalAlignment="Top">NiveauJoueur</Label>
         <Label Name="scoreTotalJoueur" Foreground="White" FontSize="50" Canvas.Left="406" Canvas.Top="320" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" VerticalAlignment="Top">ScoreTotalJoueur</Label>
+        <Button x:Name="btnReturnWin" Height="90" Width="150" Canvas.Left="35" Canvas.Top="21" Content="Back" Background="Black" BorderBrush="Black" Foreground="#FF0DF205" Click="btnReturnLose_Click" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Canvas>
 </Window>

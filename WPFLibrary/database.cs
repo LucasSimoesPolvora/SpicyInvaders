@@ -67,7 +67,7 @@ namespace Model
             }
             catch (MySqlException ex)
             {
-                // Erreur base de donnée non connectée
+                // Erreur base de donnée
                 return "Erreur de base de données : " + ex.Message;
             }
         }

@@ -8,7 +8,7 @@
         Title="MettrePseudo" Height="1080" Width="1920">
     <Canvas Name="myCanvas" Focusable="True" Background="Black">
         <Label Foreground="white" FontSize="100" Canvas.Left="601" Canvas.Top="150">Met ton pseudo</Label>
-        <TextBox Canvas.Left="618" TextWrapping="Wrap" Canvas.Top="458" Width="684" Background="Black" Foreground="White" Height="148" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="70" BorderBrush="White" BorderThickness="4" TextChanged="TextBox_TextChanged"/>
+        <TextBox Name="textePseudo" Canvas.Left="618" TextWrapping="Wrap" Canvas.Top="488" Width="684" Background="Black" Foreground="White" Height="89" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="70" BorderBrush="White" BorderThickness="4" TextAlignment="Center"/>
         <Button Background="Black" FontSize="80" Foreground="#FF0DF205" Canvas.Left="798" Canvas.Top="765" Click="Button_Click">Continue</Button>
     </Canvas>
 </Window>

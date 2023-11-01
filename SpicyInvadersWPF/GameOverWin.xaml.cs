@@ -24,7 +24,7 @@ namespace SpicyInvadersWPF
         config config = new config();
         score score = new score();
         enemy enemy = new enemy();
-        public GameOverWin(int ennemisRestants, int finalScore, int level)
+        public GameOverWin(int ennemisRestants, int finalScore, double level)
         {
             InitializeComponent();
 
@@ -72,7 +72,16 @@ namespace SpicyInvadersWPF
 
         private void btnContinueWin_Click(object sender, RoutedEventArgs e)
         {
-            
+            MainWindow window = new MainWindow();
+            this.Close();
+            window.Visibility = Visibility.Visible;
+        }
+
+        private void btnReturnLose_Click(object sender, RoutedEventArgs e)
+        {
+            MettrePseudo window = new MettrePseudo();
+            this.Close();
+            window.Show();
         }
     }
 }

@@ -20,9 +20,15 @@ namespace SpicyInvadersWPF
     /// </summary>
     public partial class Highscore : Window
     {
+        config config = new config();
         public Highscore()
         {
             InitializeComponent();
+
+            Left = config.CONST_INT_LEFT_OF_THE_SCREEN;
+            Top = config.CONST_INT_TOP_OF_THE_SCREEN;
+            Width = config.WidthOfTheScreen;
+            Height = config.HeightOfTheScreen;
 
             showHighscore();
         }

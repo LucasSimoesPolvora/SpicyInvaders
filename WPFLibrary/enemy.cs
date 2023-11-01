@@ -58,8 +58,8 @@ namespace Model
                 Rectangle newEnemy = new Rectangle
                 {
                     Tag = "enemy",
-                    Height = 45,
-                    Width = 45,
+                    Height = 55,
+                    Width = 55,
                     Fill = enemySkin
                 };
 
@@ -78,8 +78,8 @@ namespace Model
                     }
                 }
 
-                Canvas.SetTop(newEnemy, enemyRow * 60 + 60);
-                left = 85 * enemyCompteur;
+                Canvas.SetTop(newEnemy, enemyRow * 70 + 60);
+                left = 80 * enemyCompteur;
                 Canvas.SetLeft(newEnemy, left);
 
                 string basePath = AppDomain.CurrentDomain.BaseDirectory;

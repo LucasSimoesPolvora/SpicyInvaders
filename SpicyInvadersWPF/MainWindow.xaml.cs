@@ -37,7 +37,7 @@ namespace SpicyInvadersWPF
         // Déclaration des variabales
         double Boost = 1;                   // permet d'accélérer le jeu
         bool stillAlive = false;
-        public int niveau = 1;
+        public int niveau = 0;
         public int ennemisRestants;
       
         DispatcherTimer gameTimer = new DispatcherTimer();      // pour faire le timer du jeu
@@ -73,6 +73,7 @@ namespace SpicyInvadersWPF
             player.display(Player);
 
             ennemisRestants = enemy.Totalenemies;
+            niveau++;
         }
 
         /// <summary>
@@ -89,6 +90,7 @@ namespace SpicyInvadersWPF
             // Labels de la page XAML
             Score.Content = score.writeScore();
             bulletLeft.Content = "Bullet Left : " + bullet.NumberBullets;
+            Level.Content = "Level : " + niveau;
 
             player.update(Player);
             enemy.update(myCanvas);
@@ -167,7 +169,7 @@ namespace SpicyInvadersWPF
             if (enemy.Totalenemies < 1)
             {
                 GameOverWin windowShow = new GameOverWin(ennemisRestants, score.ScoreValue, niveau);
-                this.Close();
+                this.Visibility = Visibility.Hidden;
                 windowShow.Show();
                 gameTimer.Stop();
             }

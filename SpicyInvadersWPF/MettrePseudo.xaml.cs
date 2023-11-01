@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Model;
 
 namespace SpicyInvadersWPF
 {
@@ -19,20 +20,25 @@ namespace SpicyInvadersWPF
     /// </summary>
     public partial class MettrePseudo : Window
     {
+        config config = new config();
+
         public MettrePseudo()
         {
             InitializeComponent();
-        }
-
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
+            Left = config.CONST_INT_LEFT_OF_THE_SCREEN;
+            Top = config.CONST_INT_TOP_OF_THE_SCREEN;
+            Width = config.WidthOfTheScreen;
+            Height = config.HeightOfTheScreen;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            database db = new database();
+            string msg;
+            string score = "0";
 
-
+            msg = db.WriteScore(textePseudo.Text, score);
+            MessageBox.Show(msg);
         }
     }
 }
