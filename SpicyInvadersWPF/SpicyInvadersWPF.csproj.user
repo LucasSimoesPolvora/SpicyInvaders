@@ -13,6 +13,9 @@
     <Compile Update="GameOverWin.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Help.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Highscore.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -28,6 +31,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="GameOverWin.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Help.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Highscore.xaml">

@@ -32,19 +32,7 @@ namespace SpicyInvadersWPF
             Width = config.WidthOfTheScreen;
             Height = config.HeightOfTheScreen;
 
-            string msg = db.tryConnection();
-
-            if(msg == "1")
-            {
-                showHighscore();
-            }
-            else
-            {
-                MessageBox.Show(msg);
-                Menu window = new Menu();
-                this.Close();
-                window.Show();
-            }
+            showHighscore();
         }
 
         private void showHighscore()
@@ -95,11 +83,11 @@ namespace SpicyInvadersWPF
             Label10.Content = tab_highscoreScore[9];
         }
 
-        private void KeyisDown(object sender, KeyEventArgs e)
+        private void return_Click(object sender, RoutedEventArgs e)
         {
-        }
-        private void KeyisUp(object sender, KeyEventArgs e)
-        {
+            Menu window = new Menu();
+            this.Close();
+            window.Show();
         }
     }
 }

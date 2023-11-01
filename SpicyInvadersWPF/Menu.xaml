@@ -8,7 +8,7 @@
         Title="Menu" Height="1080" Width="1920">
     <Grid Margin="0,0,0,-6">
         <Grid Background="Black">
-            <Label Name="Title" Foreground="#FF0DF205" FontSize="100" HorizontalAlignment="Center" Margin="0, 50, 0, 0" >Spicy</Label>
+            <Label Name="TitleSpace" Foreground="#FF0DF205" FontSize="100" HorizontalAlignment="Center" Margin="0, 50, 0, 0" >Spicy</Label>
             <Label Name="TitleInvaders" Foreground="#FF0DF205" FontSize="125" HorizontalAlignment="Center" Margin="0, 150, 0, 0" >Invaders</Label>
             <Button Name="play" Foreground="#FF0DF205" Background="#00000000" FontSize="80" HorizontalAlignment="Center" Margin="0,425,0,475" Click="play_Click" BorderBrush="#00707070">Play</Button>
             <Button Name="Highscore" Foreground="#FF0DF205" Background="#00000000" FontSize="80" HorizontalAlignment="Center" Margin="0,550,0,350" Click="Highscore_Click" BorderBrush="#00707070">Highscore</Button>

@@ -35,9 +35,6 @@ namespace SpicyInvadersWPF
         List<Rectangle> itemsToRemove = new List<Rectangle>();                  // liste qui ferra disparaître les objets à supprimer
 
         // Déclaration des variabales
-        double Boost = 1;                   // permet d'accélérer le jeu
-        bool stillAlive = false;
-        public double niveau;
         public int ennemisRestants;
         public double scoreTot;
         bool isRestart = true;
@@ -137,7 +134,7 @@ namespace SpicyInvadersWPF
                     // Si l'hitbox de l'ennemi touche l0hitbox du joueur le joueur meurt
                     if (playerHitBox.IntersectsWith(enemyHitBox))
                     {
-                        GameOverLose windowShow = new GameOverLose(ennemisRestants, score.ScoreValue, niveau);
+                        GameOverLose windowShow = new GameOverLose(ennemisRestants, score.ScoreValue);
                         this.Close();
                         windowShow.Show();
                         gameTimer.Stop();
@@ -153,7 +150,7 @@ namespace SpicyInvadersWPF
                     // Si l'hitbox de la balle ennemie touche le joueur le joueur meurt
                     if (playerHitBox.IntersectsWith(enemyBulletHitBox))
                     {
-                        GameOverLose windowShow = new GameOverLose(ennemisRestants, score.ScoreValue, niveau);
+                        GameOverLose windowShow = new GameOverLose(ennemisRestants, score.ScoreValue);
                         this.Close();
                         windowShow.Show();
                         gameTimer.Stop();

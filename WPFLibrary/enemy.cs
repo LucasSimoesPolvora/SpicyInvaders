@@ -120,7 +120,7 @@ namespace Model
                         isGoingDown = false;
                     }
 
-                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.ActualWidth - 0)
+                    if (Canvas.GetLeft(x) > config.WidthOfTheScreen - 70)
                     {
                         isGoingDown = true;
                         isGoingRight = false;
@@ -132,7 +132,7 @@ namespace Model
                         isGoingRight = true;
                     }
 
-                    if (Canvas.GetTop(x) > Application.Current.MainWindow.Height - 200)
+                    if (Canvas.GetTop(x) > config.HeightOfTheScreen - 200)
                     {
                         
                     }

@@ -21,6 +21,7 @@ namespace SpicyInvadersWPF
     public partial class Menu : Window
     {
         config config = new config();
+        database db = new database();
         public Menu()
         {
             InitializeComponent();
@@ -40,13 +41,22 @@ namespace SpicyInvadersWPF
 
         private void Highscore_Click(object sender, RoutedEventArgs e)
         {
-            Highscore window = new Highscore();
-            this.Close();
+            string answer = db.tryConnection();
+            if(answer == "connection successful")
+            {
+                Highscore window = new Highscore();
+                this.Close();
+                window.Show();
+            }
+            else
+            {
+                MessageBox.Show("Erreur de base de donnée :" + answer);
+            }
         }
 
         private void Help_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow window = new MainWindow();
+            Help window = new Help();
             this.Close();
             window.Show();
         }

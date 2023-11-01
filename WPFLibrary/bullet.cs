@@ -27,6 +27,7 @@ namespace Model
         List<Rectangle> itemsToRemove = new List<Rectangle>();
         score score = new score();
         enemy enemy = new enemy();
+        config config = new config();
 
         /// <summary>
         /// Fait apparaître les balles ennemis sur la fenêtre
@@ -81,7 +82,7 @@ namespace Model
                 {
                     Canvas.SetTop(x, Canvas.GetTop(x) + 10);
 
-                    if (Canvas.GetTop(x) > Application.Current.MainWindow.Height)
+                    if (Canvas.GetTop(x) > config.HeightOfTheScreen)
                     {
                         itemsToRemove.Add(x);
                     }
