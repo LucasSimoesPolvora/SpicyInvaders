@@ -23,7 +23,7 @@ namespace SpicyInvadersWPF
         config config = new config();
         score score = new score();
         enemy enemy = new enemy();
-        public GameOverLose(int ennemisRestants, int finalScore, int level)
+        public GameOverLose(int ennemisRestants, int finalScore, double level)
         {
             InitializeComponent();
 

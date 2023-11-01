@@ -35,8 +35,6 @@ namespace Model
         public bool isGoingRight = true;                            // bool qui dira si l'ennemi va vers la droite
         public bool isGoingLeft = false;                            // Bool qui dira si l'ennemi va vers la gauche
         public bool isGoingDown = false;                            // Bool qui dira si l'ennemi descend
-        
-
 
         private ImageBrush enemySkin = new ImageBrush();
 
@@ -122,7 +120,7 @@ namespace Model
                         isGoingDown = false;
                     }
 
-                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.Width - 10)
+                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.Width - 70)
                     {
                         isGoingDown = true;
                         isGoingRight = false;
@@ -149,11 +147,6 @@ namespace Model
             {
                 boost += 0.1;
             }
-        }
-
-        public void nbrOfennemiesKilled()
-        {
-            
         }
 
 

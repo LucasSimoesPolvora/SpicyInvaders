@@ -5,7 +5,9 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpicyInvadersWPF", "SpicyInvadersWPF.csproj", "{203C472D-6DFB-4035-A4E8-45215F30DB12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "..\WPFLibrary\Model.csproj", "{D678A11E-9459-4B7B-B27A-CC2A536AFD16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model", "..\WPFLibrary\Model.csproj", "{D678A11E-9459-4B7B-B27A-CC2A536AFD16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModelTests", "..\ModelTests\ModelTests.csproj", "{BA27B5F3-07F6-4B29-8BD4-E4C37F09CEAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D678A11E-9459-4B7B-B27A-CC2A536AFD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D678A11E-9459-4B7B-B27A-CC2A536AFD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D678A11E-9459-4B7B-B27A-CC2A536AFD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA27B5F3-07F6-4B29-8BD4-E4C37F09CEAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA27B5F3-07F6-4B29-8BD4-E4C37F09CEAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA27B5F3-07F6-4B29-8BD4-E4C37F09CEAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA27B5F3-07F6-4B29-8BD4-E4C37F09CEAB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

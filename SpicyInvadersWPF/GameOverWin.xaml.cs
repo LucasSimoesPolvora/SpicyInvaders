@@ -24,6 +24,8 @@ namespace SpicyInvadersWPF
         config config = new config();
         score score = new score();
         enemy enemy = new enemy();
+
+        double scoreTot;
         public GameOverWin(int ennemisRestants, int finalScore, double level)
         {
             InitializeComponent();
@@ -64,10 +66,14 @@ namespace SpicyInvadersWPF
             Canvas.SetLeft(scoreTotalJoueur, config.WidthOfTheScreen / 2);
             Canvas.SetTop(scoreTotalJoueur, 700);
 
+            scoreTot = (finalScore - ennemisRestants * 10) + (finalScore + ennemisRestants * 10) * (level / 10);
+
             scoreJoueur.Content = finalScore;
             ennemisRestantsJoueur.Content = ennemisRestants * 10;
             niveauJoueur.Content = (finalScore - ennemisRestants * 10) * (level / 10);
-            scoreTotalJoueur.Content = (finalScore - ennemisRestants * 10) + (finalScore + ennemisRestants * 10) * (level / 10);
+            scoreTotalJoueur.Content = scoreTot;
+            
+            
         }
 
         private void btnContinueWin_Click(object sender, RoutedEventArgs e)
