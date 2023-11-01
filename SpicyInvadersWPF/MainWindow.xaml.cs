@@ -121,6 +121,7 @@ namespace SpicyInvadersWPF
                                 itemsToRemove.Add(y);
                                 enemy.Totalenemies--;
                                 ennemisRestants--;
+                                if (ennemisRestants % 10 == 0) enemy.moreBoost();
                                 score.update();
                             }
                         }
@@ -170,7 +171,7 @@ namespace SpicyInvadersWPF
 
             if (enemy.Totalenemies < 1)
             {
-                GameOverWin windowShow = new GameOverWin(ennemisRestants, score.ScoreValue, niveau);
+                GameOverWin windowShow = new GameOverWin(ennemisRestants, score.ScoreValue);
                 this.Visibility = Visibility.Hidden;
                 windowShow.Show();
                 gameTimer.Stop();

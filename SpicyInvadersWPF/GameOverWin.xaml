@@ -12,13 +12,11 @@
         <Label Name="title" Foreground="White" FontSize="90" Canvas.Left="270" Canvas.Top="30" Style="{StaticResource CustomFont}">Game Over</Label>
         <Label Name="Score" FontSize="50" Foreground="White" Canvas.Left="213" Canvas.Top="120" HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource CustomFont}">Score :</Label>
         <Label Name ="ennemiRestant" FontSize="50" Foreground="White" Canvas.Left="80" Canvas.Top="180" HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource CustomFont}">-   Ennemis Restants :</Label>
-        <Label Name ="niveauAtteint" FontSize="50" Foreground="White" Canvas.Left="189" Canvas.Top="240" HorizontalAlignment="Left" VerticalAlignment="Top" Style="{StaticResource CustomFont}">*   Niveau :</Label>
         <Label Name ="trait" FontSize="50" Foreground="White" Canvas.Left="158" Canvas.Top="280" Style="{StaticResource CustomFont}">-----------------------------------------------------------</Label>
         <Label Name="scoreTotal" FontSize="50" Foreground="White" Canvas.Left="166" Canvas.Top="320" Style="{StaticResource CustomFont}">Score total :</Label>
 
         <Label Name="scoreJoueur" Foreground="White" FontSize="50" Canvas.Left="406" Canvas.Top="120" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" VerticalAlignment="Center">ScoreJoueur</Label>
         <Label Name="ennemisRestantsJoueur" Foreground="White" FontSize="50" Canvas.Left="406" Canvas.Top="180" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" VerticalAlignment="Top">EnnemisRestantsJoueur</Label>
-        <Label Name="niveauJoueur" Foreground="White" FontSize="50" Canvas.Left="406" Canvas.Top="240" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" VerticalAlignment="Top">NiveauJoueur</Label>
         <Label Name="scoreTotalJoueur" Foreground="White" FontSize="50" Canvas.Left="406" Canvas.Top="320" Style="{StaticResource CustomFont}" HorizontalAlignment="Left" VerticalAlignment="Top">ScoreTotalJoueur</Label>
         <Button x:Name="btnReturnWin" Height="90" Width="150" Canvas.Left="35" Canvas.Top="21" Content="Back" Background="Black" BorderBrush="Black" Foreground="#FF0DF205" Click="btnReturnLose_Click" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Canvas>

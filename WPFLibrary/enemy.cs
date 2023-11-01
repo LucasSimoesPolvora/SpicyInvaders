@@ -143,10 +143,7 @@ namespace Model
 
         public void moreBoost()
         {
-            if(ennemiesKilled % 10 == 0)
-            {
-                boost += 0.1;
-            }
+            boost += 0.1;
         }
 
 

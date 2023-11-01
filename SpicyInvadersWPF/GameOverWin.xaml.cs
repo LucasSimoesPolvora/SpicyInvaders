@@ -26,7 +26,7 @@ namespace SpicyInvadersWPF
         enemy enemy = new enemy();
 
         double scoreTot;
-        public GameOverWin(int ennemisRestants, int finalScore, double level)
+        public GameOverWin(int ennemisRestants, int finalScore)
         {
             InitializeComponent();
 
@@ -45,9 +45,6 @@ namespace SpicyInvadersWPF
             Canvas.SetLeft(ennemiRestant, config.WidthOfTheScreen / 4 - 290);
             Canvas.SetTop(ennemiRestant, 350);
 
-            Canvas.SetLeft(niveauAtteint, config.WidthOfTheScreen / 4 - 60);
-            Canvas.SetTop(niveauAtteint, 500);
-
             Canvas.SetLeft(trait, config.WidthOfTheScreen / 4 - 200);
             Canvas.SetTop(trait, 600);
 
@@ -60,17 +57,13 @@ namespace SpicyInvadersWPF
             Canvas.SetLeft(ennemisRestantsJoueur, config.WidthOfTheScreen / 2);
             Canvas.SetTop(ennemisRestantsJoueur, 350);
 
-            Canvas.SetLeft(niveauJoueur, config.WidthOfTheScreen / 2);
-            Canvas.SetTop(niveauJoueur, 500);
-
             Canvas.SetLeft(scoreTotalJoueur, config.WidthOfTheScreen / 2);
             Canvas.SetTop(scoreTotalJoueur, 700);
 
-            scoreTot = (finalScore - ennemisRestants * 10) + (finalScore + ennemisRestants * 10) * (level / 10);
+            scoreTot = (finalScore - ennemisRestants * 10);
 
             scoreJoueur.Content = finalScore;
             ennemisRestantsJoueur.Content = ennemisRestants * 10;
-            niveauJoueur.Content = (finalScore - ennemisRestants * 10) * (level / 10);
             scoreTotalJoueur.Content = scoreTot;
             
             
