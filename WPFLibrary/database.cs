@@ -40,7 +40,7 @@ namespace Model
 
         public string WriteScore(string player, string score)
         {
-            string connstring = "server=localhost; uid=root; pwd=4$a6mJ#ieQ95&MK9LF$R; database=db_space_invaders;";
+            string connstring = "server=localhost; uid=root; pwd=root; database=db_space_invaders;";
             MySqlConnection con = new MySqlConnection(connstring);
 
             try
@@ -88,6 +88,32 @@ namespace Model
             string[] Answer = new string[10];
             Answer = ConnectionToDB(cmdSql, table1);
             return Answer;
+        }
+
+        public string tryConnection()
+        {
+            string connstring = "server=localhost; uid=root; pwd=root; database=db_space_invaders;";
+            MySqlConnection con = new MySqlConnection(connstring);
+
+            try
+            {
+                con.Open();
+
+                // Créez la commande SQL d'insertion pour ajouter un nouveau score au joueur.
+                string sql = "SELECT jouNombrePoints FROM t_joueur";
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+
+                // Exécutez la commande d'insertion.
+                cmd.ExecuteNonQuery();
+
+                // Affichez un message de succès en utilisant MessageBox.Show.
+                return "1";
+            }
+            catch(MySqlException ex)
+            {
+                return "Erreur de base de données : " + ex.Message;
+            }
+            return "a";
         }
     }
 }

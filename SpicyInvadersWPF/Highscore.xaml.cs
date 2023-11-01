@@ -21,6 +21,8 @@ namespace SpicyInvadersWPF
     public partial class Highscore : Window
     {
         config config = new config();
+        database db = new database();
+
         public Highscore()
         {
             InitializeComponent();
@@ -30,12 +32,22 @@ namespace SpicyInvadersWPF
             Width = config.WidthOfTheScreen;
             Height = config.HeightOfTheScreen;
 
-            showHighscore();
+            string msg = db.tryConnection();
+
+            if(msg == "1")
+            {
+                showHighscore();
+            }
+            else
+            {
+                MessageBox.Show(msg);
+                Menu window = new Menu();
+                window.Show();
+            }
         }
 
         private void showHighscore()
         {
-            database db = new database();
             string[] tab_highscoreName = new string[10];
             string[] tab_highscoreScore = new string[10];
             tab_highscoreName = db.ShowHighscoreNames();

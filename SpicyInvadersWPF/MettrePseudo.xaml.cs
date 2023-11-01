@@ -39,6 +39,10 @@ namespace SpicyInvadersWPF
 
             msg = db.WriteScore(textePseudo.Text, score);
             MessageBox.Show(msg);
+
+            Menu window = new Menu();
+            window.Show();
+            this.Close();
         }
     }
 }
