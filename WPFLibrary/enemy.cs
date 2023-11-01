@@ -120,7 +120,7 @@ namespace Model
                         isGoingDown = false;
                     }
 
-                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.Width - 70)
+                    if (Canvas.GetLeft(x) > Application.Current.MainWindow.ActualWidth - 0)
                     {
                         isGoingDown = true;
                         isGoingRight = false;

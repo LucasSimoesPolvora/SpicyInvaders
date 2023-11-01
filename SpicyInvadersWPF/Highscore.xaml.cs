@@ -42,6 +42,7 @@ namespace SpicyInvadersWPF
             {
                 MessageBox.Show(msg);
                 Menu window = new Menu();
+                this.Close();
                 window.Show();
             }
         }

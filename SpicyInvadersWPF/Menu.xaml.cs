@@ -41,7 +41,6 @@ namespace SpicyInvadersWPF
         private void Highscore_Click(object sender, RoutedEventArgs e)
         {
             Highscore window = new Highscore();
-            window.Show();
             this.Close();
         }
 
