@@ -35,7 +35,7 @@ namespace Model
         public bool isGoingRight = true;                            // bool qui dira si l'ennemi va vers la droite
         public bool isGoingLeft = false;                            // Bool qui dira si l'ennemi va vers la gauche
         public bool isGoingDown = false;                            // Bool qui dira si l'ennemi descend
-        public bool gameOver = true;                                       // Si les ennemis touchent le bas de l'écran le joueur perd
+        public bool gameOver = false;                                       // Si les ennemis touchent le bas de l'écran le joueur perd
 
         private ImageBrush enemySkin = new ImageBrush();            // Image de l'ennemi
 
