@@ -27,7 +27,7 @@ namespace Model
         public int enemyRow = 0;                                    // int qui va compter a quel ligne les ennemis spawn
         public int enemyCompteur = 0;                               // Compteur qui sers a display les ennemis
         public int enemySpeed = 8;                                  // Vitesse des vaisseaux ennemis
-        public int enemySpeedY = 25;                                // Vitesse de la vitesse varticale des vaisseaux ennemis
+        public int enemySpeedY = 35;                                // Vitesse de la vitesse varticale des vaisseaux ennemis
         public int limit = config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF;                   // Limite du nbr de vaisseaux qui peuvent spawn
         public int Totalenemies = config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF;            // Mëme chose que le limit mais celui ci va être diminuer a chaque fois qu'on tue les ennemis
         public int ennemiesKilled = 0;                              // Compte le nbr d'ennemis tué
@@ -146,7 +146,7 @@ namespace Model
 
                     if (Canvas.GetTop(x) > config.HeightOfTheScreen - 200)
                     {
-                        gameOver = false;
+                        gameOver = true;
                     }
                 }
             }
