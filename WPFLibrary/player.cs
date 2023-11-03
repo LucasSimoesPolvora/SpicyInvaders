@@ -130,7 +130,7 @@ namespace Model
                 Canvas.SetTop(Player, Canvas.GetTop(Player) - PlayerSpeed);
             }
 
-            else if (goDown == true && Canvas.GetTop(Player) + 110 < Application.Current.MainWindow.Height)
+            else if (goDown == true && Canvas.GetTop(Player) + 150 < Application.Current.MainWindow.Height)
             {
                 Canvas.SetTop(Player, Canvas.GetTop(Player) + PlayerSpeed);
             }
