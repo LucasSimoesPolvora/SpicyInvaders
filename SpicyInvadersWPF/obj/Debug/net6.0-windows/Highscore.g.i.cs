@@ -237,7 +237,7 @@ namespace SpicyInvadersWPF {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/SpicyInvadersWPF;component/highscore.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/SpicyInvadersWPF;V1.0.0.0;component/highscore.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\Highscore.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

@@ -20,24 +20,23 @@ namespace Model
 {
     public class enemy
     {
-        config config = new config();                               // Appelle la classe config
-        score score = new score();                                  // Appelle la classe score
+        config config = new config();                                                                       // Appelle la classe config
+        score score = new score();                                                                          // Appelle la classe score
 
-
-        public int enemyRow = 0;                                    // int qui va compter a quel ligne les ennemis spawn
-        public int enemyCompteur = 0;                               // Compteur qui sers a display les ennemis
-        public int enemySpeed = 8;                                  // Vitesse des vaisseaux ennemis
-        public int enemySpeedY = 35;                                // Vitesse de la vitesse varticale des vaisseaux ennemis
+        public int enemyRow = 0;                                                                            // int qui va compter a quel ligne les ennemis spawn
+        public int enemyCompteur = 0;                                                                       // Compteur qui sers a display les ennemis
+        public int enemySpeed = 8;                                                                          // Vitesse des vaisseaux ennemis
+        public int enemySpeedY = 35;                                                                        // Vitesse de la vitesse varticale des vaisseaux ennemis
         public int limit = config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF;                   // Limite du nbr de vaisseaux qui peuvent spawn
         public int Totalenemies = config.CONST_INT_ENNEMIES * config.CONST_INT_NBR_ENNMIES_DIFF;            // Mëme chose que le limit mais celui ci va être diminuer a chaque fois qu'on tue les ennemis
-        public int ennemiesKilled = 0;                              // Compte le nbr d'ennemis tué
-        public double boost = 1;                                    // boost pour les ennemis quand ils sont peu
-        public bool isGoingRight = true;                            // bool qui dira si l'ennemi va vers la droite
-        public bool isGoingLeft = false;                            // Bool qui dira si l'ennemi va vers la gauche
-        public bool isGoingDown = false;                            // Bool qui dira si l'ennemi descend
-        public bool gameOver = false;                                       // Si les ennemis touchent le bas de l'écran le joueur perd
+        public int ennemiesKilled = 0;                                                                      // Compte le nbr d'ennemis tué
+        public double boost = 1;                                                                            // boost pour les ennemis quand ils sont peu
+        public bool isGoingRight = true;                                                                    // bool qui dira si l'ennemi va vers la droite
+        public bool isGoingLeft = false;                                                                    // Bool qui dira si l'ennemi va vers la gauche
+        public bool isGoingDown = false;                                                                    // Bool qui dira si l'ennemi descend
+        public bool gameOver = false;                                                                       // Si les ennemis touchent le bas de l'écran le joueur perd
 
-        private ImageBrush enemySkin = new ImageBrush();            // Image de l'ennemi
+        private ImageBrush enemySkin = new ImageBrush();                                                    // Image de l'ennemi
 
 
         /// <summary>

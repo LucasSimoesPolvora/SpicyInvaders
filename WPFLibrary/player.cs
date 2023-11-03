@@ -20,12 +20,12 @@ namespace Model
 {
     public class player
     {
-        public bool goLeft;                         // bool pour savoir si le joueur va à gauche
-        public bool goRight;                        // Bool pour savoir si le joueur va à droite
-        public bool goUp;                           // Bool pour savoir si le joueur monte
-        public bool goDown;                         // Bool pour savoir si le joueur descend
-        public int PlayerSpeed = 20;               // Vitesse du joueur
-        static ImageBrush playerSkin = new ImageBrush();               // pour le skin du joueur
+        public bool goLeft;                                             // bool pour savoir si le joueur va à gauche
+        public bool goRight;                                            // Bool pour savoir si le joueur va à droite
+        public bool goUp;                                               // Bool pour savoir si le joueur monte
+        public bool goDown;                                             // Bool pour savoir si le joueur descend
+        public int PlayerSpeed = 20;                                    // Vitesse du joueur
+        static ImageBrush playerSkin = new ImageBrush();                // pour le skin du joueur
 
         // Propriétés du joueur
         Rectangle PlayerCaracter = new Rectangle
